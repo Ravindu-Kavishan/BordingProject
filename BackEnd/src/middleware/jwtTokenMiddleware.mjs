@@ -2,11 +2,11 @@ import jwt from 'jsonwebtoken';
 
 const generateJWTToken = async (req, res) => {
   try {
-    const { _id } = req.body;
+    const { user} = req.body;
 
 
     const token = jwt.sign(
-      { id: _id },
+      { id: user._id },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
@@ -19,8 +19,8 @@ const generateJWTToken = async (req, res) => {
 
     // Also send user info (optional)
     res.status(201).json({
-      _id: _id,
-      message: 'User registered successfully'
+      _id: user._id,
+      message: 'Success'
     });
 
   } catch (error) {

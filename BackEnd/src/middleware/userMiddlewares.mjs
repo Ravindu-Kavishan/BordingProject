@@ -4,9 +4,10 @@ const getUserByEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
     req.body.userEmailExist = false;
-    const userExists = await User.findOne({ email });
-    if (userExists) {
+    const user= await User.findOne({ email });
+    if (user) {
       req.body.userEmailExist = true;
+      req.body.user = user;
     }
 
     next();

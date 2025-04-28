@@ -9,11 +9,24 @@ const registerUser = async (req, res, next) => {
     }
 
     const user = await User.create({ name, email, password });
-    req.body._id = user._id;
+    req.body.user = user;
     next();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-export default { registerUser };
+const loginUser = async (req, res, next) => {
+  try {
+    const { userEmailExist } = req.body;
+
+    if (!userEmailExist) {
+      return res.status(404).json({ message: "User not found." });
+    }
+    next();
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export default { registerUser,loginUser };
