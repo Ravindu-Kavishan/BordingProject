@@ -29,4 +29,13 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-export default { registerUser,loginUser };
+const sendUserDetails = async (req, res, next) => {
+  try {
+    const  user  = req.user;
+    return res.status(200).json({ user, message: "Success." });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export default { registerUser, loginUser, sendUserDetails };

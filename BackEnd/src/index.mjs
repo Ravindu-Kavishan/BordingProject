@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-app.use('/api/users', userRoutes);
+app.use('/users', userRoutes);
 
 // Start server
 app.listen(PORT, () => {
