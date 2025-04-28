@@ -1,0 +1,41 @@
+@startuml
+class User {
+  +userId: String
+  +name: String
+  +email: String
+  +password: String
+}
+
+class Student {
+  +viewDetailsOfPlaces()
+}
+
+class Owner {
+  +makePayment(amount: Double): boolean
+  +createBoardingPlace(details: String): BoardingPlace
+}
+
+
+
+class BoardingPlace {
+  +boardingPlaceId: String
+  +title: String
+  +description: String
+  +location: String
+  +images: List<String>
+  +status: String
+}
+
+class Payment {
+  +paymentId: String
+  +amount: Double
+  +date: Date
+  +status: String
+}
+
+User <|-- Student
+User <|-- Owner
+Owner "1" -- "many" BoardingPlace : creates >
+Owner "1" -- "many" Payment : makes >
+
+@enduml

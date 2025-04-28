@@ -1,0 +1,7 @@
+@startuml
+start
+:Browse Boarding Places;
+:Select a Place;
+:View Place Details;
+stop
+@enduml

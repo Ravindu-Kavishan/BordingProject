@@ -1,0 +1,17 @@
+@startuml
+actor "Student" as Student
+actor "Boarding Owner" as Owner
+
+rectangle "Boarding Place System" {
+    Student --> (View Available Boarding Places)
+    Student --> (Get Description of a Boarding Place)
+    
+    Owner --> (Create Boarding Place)
+    Owner --> (Upload Images)
+    Owner --> (Add Description and Location)
+    Owner --> (Pay for Advertisement)
+    Owner --> (Wiev Payment Details)
+    
+}
+
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+start
+:Login/Register;
+:Enter Place Details;
+:Upload Images;
+:Add Location on Map;
+:Pay for Listing;
+stop
+@enduml
