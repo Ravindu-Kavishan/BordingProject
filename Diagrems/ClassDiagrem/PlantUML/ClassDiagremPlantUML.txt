@@ -19,11 +19,12 @@ class Owner {
 
 class BoardingPlace {
   +boardingPlaceId: String
-  +title: String
+  +type:String
+  +availablity:Int
   +description: String
+  +forWhome:String
   +location: String
   +images: List<String>
-  +status: String
 }
 
 class Payment {

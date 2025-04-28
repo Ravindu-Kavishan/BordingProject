@@ -11,6 +11,11 @@ rectangle "Boarding Place System" {
     Owner --> (Add Description and Location)
     Owner --> (Pay for Advertisement)
     Owner --> (Wiev Payment Details)
+    Owner --> (Wiev Posted places)
+    Owner --> (Update Posted places)
+    Owner --> (Login)
+    Owner --> (Register)
+    Owner --> (update profile)
     
 }
 

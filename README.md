@@ -15,6 +15,10 @@
     rename MERN folder.
     git initialise
         git init
+        git commit -m "first commit"
+        git branch -M main
+        git remote add origin https://github.com/Ravindu-Kavishan/MERN.git
+        git push -u origin main
     make Diagrems and place well.
 
     start developing backend.
@@ -25,27 +29,30 @@
         npm install express
         npm install dotenv
         --cheack wether index.js is there.
-            create index.js
+            create index.mjs
         npm install --save-dev nodemon
         npm install mongoose
         -- mack changers in package.json
                 "scripts": {
-                  "start": "node index.js",
-                  "dev": "nodemon index.js"
+                  "start": "node src/index.mjs",
+                  "dev": "nodemon src/index.mjs"
                 },
                 "type": "module"
-        npm run dev
-        --the output
-            Server running on http://localhost:3000
-            MongoDB Connected: localhost
+        get new terminel.
+            cd Backend
+            npm run dev
+                --the output
+                    Server running on http://localhost:3000
+                    MongoDB Connected: localhost
 
     get new terminel.
     start developing Frountend
         npm create vite@latest
         cd your-project-name  (optinal)
         npm install
-        npm run dev
         npm install react-router-dom
+        get new terminel.
+            npm run dev
 
 
 
