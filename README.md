@@ -82,6 +82,8 @@
 |         |    └── userService.js
 |         |-- /utils
 |         |    └── utils.js
+|         |-- /assets
+|         |    
 |         |-- App.js
 |         └── index.js
 |
