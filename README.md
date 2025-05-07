@@ -47,6 +47,7 @@
 
     get new terminel.
     start developing Frountend
+        cd Frountend
         npm create vite@latest
         cd your-project-name  (optinal)
         npm install
