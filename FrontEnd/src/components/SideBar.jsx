@@ -23,7 +23,7 @@ export default function SideBar() {
   ];
 
   return (
-    <div className="w-60 h-screen primary-bg shadow-md sticky top-0 overflow-y-auto">
+    <div className="w-full h-screen primary-bg shadow-md sticky top-0 overflow-y-auto">
       <ul className="flex flex-col gap-2 py-4">
         {items.map((item, index) => (
           <li

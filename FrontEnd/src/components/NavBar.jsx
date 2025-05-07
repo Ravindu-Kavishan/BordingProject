@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { FaSearch, FaUserCircle, FaMoon, FaSun } from "react-icons/fa";
+import { FaSearch, FaUserCircle, FaMoon, FaSun, FaBars, FaTimes,FaHeart } from "react-icons/fa";
+import SideBar from "./SideBar";
 
 export default function NavBar() {
   const [darkMode, setDarkMode] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Toggle dark mode on <html> tag
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
@@ -15,16 +16,23 @@ export default function NavBar() {
 
   return (
     <div className="flex items-center justify-between px-4 py-2 primary-bg shadow-md sticky top-0 z-50">
-      {/* Logo */}
+      {/* Left: Logo + Hamburger */}
       <div className="flex items-center gap-4">
+        <button
+          className="md:hidden text-2xl icon-color"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
           alt="YouTube Logo"
-          className="h-6"
+          className="h-6 hidden md:block"
         />
       </div>
 
-      {/* Search Bar */}
+      {/* Middle: Search Bar */}
       <div className="flex items-center flex-1 max-w-xl mx-4">
         <input
           type="text"
@@ -36,26 +44,46 @@ export default function NavBar() {
         </button>
       </div>
 
-      {/* Right Side */}
-      <div className="flex items-center gap-4 text-xl">
-        {/* Theme Toggle */}
+      {/* Right: Desktop only */}
+      <div className="hidden md:flex items-center gap-4 text-xl">
+        <button
+          className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110"
+        >
+           <FaHeart className="icon-color" />
+        </button>
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110"
         >
-          {darkMode ? (
-            <FaSun className="icon-color" />
-          ) : (
-            <FaMoon className="icon-color" />
-          )}
+          {darkMode ? <FaSun className="icon-color" /> : <FaMoon className="icon-color" />}
         </button>
 
-        {/* Sign In */}
         <button className="flex items-center gap-2 px-4 py-1 custom-border primary-text rounded-full hover:secondry-bg">
           <FaUserCircle className="text-xl" />
           <span className="text-sm font-medium">Sign in</span>
         </button>
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="absolute top-12 left-0 w-full primary-bg shadow-md py-4 px-6 md:hidden z-40">
+          <div className="flex flex-col gap-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="flex items-center gap-2 secondry-bg p-2 rounded-md"
+            >
+              {darkMode ? <FaSun className="icon-color" /> : <FaMoon className="icon-color" />}
+              <span className="text-sm primary-text">Toggle Theme</span>
+            </button>
+
+            <button className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text">
+              <FaUserCircle className="text-xl" />
+              <span className="text-sm font-medium primary-text">Sign in</span>
+            </button>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Card({ thumbnail, title, channel, views, time }) {
   return (
-    <div className="w-full sm:w-[300px] flex flex-col gap-2 cursor-pointer">
+    <div className="w-full flex flex-col gap-2 cursor-pointer">
       <img
         src={thumbnail}
         alt="Thumbnail"

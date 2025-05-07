@@ -1,4 +1,3 @@
-// Home.jsx
 import React from "react";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
@@ -9,8 +8,14 @@ export default function Home() {
     <div className="primary-bg min-h-screen">
       <NavBar />
       <div className="flex">
-        <SideBar />
-        <CardContainer />
+        {/* Sidebar hidden on small screens */}
+        <div className="hidden md:block">
+          <SideBar />
+        </div>
+        {/* Cards take full width on small screens */}
+        <div className="flex-1">
+          <CardContainer />
+        </div>
       </div>
     </div>
   );

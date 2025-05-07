@@ -133,7 +133,7 @@ export default function CardContainer() {
   ];
 
   return (
-    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 primary-bg">
+    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 primary-bg">
       {cards.map(({thumbnail, title, channel, views, time}, index) => (
         <Card key={index} thumbnail={thumbnail} title={title} channel={channel} views={views} time={time} />
       ))}
