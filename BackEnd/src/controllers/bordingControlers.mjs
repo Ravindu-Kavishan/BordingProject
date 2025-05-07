@@ -34,7 +34,7 @@ const getPlace = async (req, res, next) => {
   try {
     const bordingId = req.body.bordingId;
 
-    const bording = await Bording.findById({ _id:bordingId });
+    const bording = await Bording.findById({ _id: bordingId });
 
     res.status(200).json(bording);
   } catch (error) {
@@ -42,4 +42,20 @@ const getPlace = async (req, res, next) => {
   }
 };
 
-export default { addPlace,getPlace, getMyPlaces };
+const updatePlace = async (req, res, next) => {
+  try {
+    const placeData = req.body;
+    const userId = req.user.id;
+
+    await Bording.updateOne(
+      { _id: placeData.id, userId },
+      { $set: { ...placeData, userId } },
+      { runValidators: true }
+    );
+    res.status(200).json({ message: "Place updated" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export default { addPlace, getPlace, getMyPlaces, updatePlace };
