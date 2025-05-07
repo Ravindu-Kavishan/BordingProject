@@ -7,7 +7,7 @@
     --secondry-bg: #f1f1f1;
     --primary-text: #000000;
     --custom-border: #d1d1d1;
-    --icon-color:#4a5565;
+    --icon-color:#333333;
   }
   
   .dark {
@@ -15,7 +15,7 @@
     --secondry-bg: #353333;
     --primary-text: #ffffff;
     --custom-border: #444444;
-    --icon-color:#ffffff;
+    --icon-color:#bbbbbb;
   }
   
   /* Utility Classes Using Variables */
