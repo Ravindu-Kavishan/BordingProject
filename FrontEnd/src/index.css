@@ -8,6 +8,7 @@
     --primary-text: #000000;
     --custom-border: #d1d1d1;
     --icon-color:#333333;
+    --hover-color:#3e1313;
   }
   
   .dark {
@@ -16,6 +17,7 @@
     --primary-text: #ffffff;
     --custom-border: #444444;
     --icon-color:#bbbbbb;
+    --hover-color:#9d9797;
   }
   
   /* Utility Classes Using Variables */
@@ -43,3 +45,8 @@
   .icon-color {
     color: var(--icon-color);
   }
+  .hover-color{
+    background-color: var(--hover-color);
+
+  }
+  
