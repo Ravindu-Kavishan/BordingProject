@@ -31,11 +31,27 @@ const loginUser = async (req, res, next) => {
 
 const sendUserDetails = async (req, res, next) => {
   try {
-    const  user  = req.user;
+    const user = req.user;
     return res.status(200).json({ user, message: "Success." });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-export default { registerUser, loginUser, sendUserDetails };
+const updateOwner = async (req, res, next) => {
+  try {
+    const { name, email, password } = req.body;
+    const id = req.user.id;
+
+    const user = await User.updateOne(
+      { _id: id },
+      { $set: { name, email, password } },
+      { runValidators: true } 
+    );
+    res.status(200).json({ message: "User updated" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export default { registerUser, loginUser, sendUserDetails, updateOwner };

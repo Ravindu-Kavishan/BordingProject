@@ -5,7 +5,7 @@ import userMiddlewares from "../middleware/userMiddlewares.mjs";
 import hashPasswordMiddleware from "../middleware/hashPasswordMiddleware.mjs";
 import jwtTokenMiddleware from "../middleware/jwtTokenMiddleware.mjs";
 
-const { registerUser,loginUser,sendUserDetails } = userController;
+const { registerUser,loginUser,sendUserDetails,updateOwner } = userController;
 const { addPlace } =bordingController
 const { getUserByEmail } = userMiddlewares;
 const { createHashPassword,compareHashPassword } = hashPasswordMiddleware;
@@ -16,6 +16,7 @@ const router = express.Router();
 router.post("/register", getUserByEmail, createHashPassword, registerUser,generateJWTToken);
 router.post("/login", getUserByEmail,loginUser ,compareHashPassword,generateJWTToken);
 router.get("/getOwner",authorizeWithJWT, sendUserDetails);
+router.post("/updateOwner",authorizeWithJWT,createHashPassword,updateOwner);
 router.post("/addPlace",authorizeWithJWT,addPlace)
 
 export default router;
