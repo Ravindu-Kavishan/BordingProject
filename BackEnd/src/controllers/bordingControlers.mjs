@@ -30,4 +30,16 @@ const getMyPlaces = async (req, res, next) => {
   }
 };
 
-export default { addPlace, getMyPlaces };
+const getPlace = async (req, res, next) => {
+  try {
+    const bordingId = req.body.bordingId;
+
+    const bording = await Bording.findById({ _id:bordingId });
+
+    res.status(200).json(bording);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export default { addPlace,getPlace, getMyPlaces };

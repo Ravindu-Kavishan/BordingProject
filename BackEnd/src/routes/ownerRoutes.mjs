@@ -6,7 +6,7 @@ import hashPasswordMiddleware from "../middleware/hashPasswordMiddleware.mjs";
 import jwtTokenMiddleware from "../middleware/jwtTokenMiddleware.mjs";
 
 const { registerUser,loginUser,sendUserDetails,updateOwner } = userController;
-const { addPlace,getMyPlaces } =bordingController
+const { addPlace,getPlace,getMyPlaces } =bordingController
 const { getUserByEmail } = userMiddlewares;
 const { createHashPassword,compareHashPassword } = hashPasswordMiddleware;
 const { generateJWTToken,authorizeWithJWT } = jwtTokenMiddleware;
@@ -18,7 +18,7 @@ router.post("/login", getUserByEmail,loginUser ,compareHashPassword,generateJWTT
 router.get("/getOwner",authorizeWithJWT, sendUserDetails);
 router.put("/updateOwner",authorizeWithJWT,createHashPassword,updateOwner);
 router.post("/addPlace",authorizeWithJWT,addPlace);
-// router.get("/getPlace",authorizeWithJWT,getPlace);
+router.post("/getPlace",authorizeWithJWT,getPlace);
 router.get("/getMyPlaces",authorizeWithJWT,getMyPlaces);
 // router.get("/updatePlace",authorizeWithJWT,updatePlace);
 
