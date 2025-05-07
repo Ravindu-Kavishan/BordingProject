@@ -7,7 +7,7 @@ const BordingSchema = new mongoose.Schema(
       required: true,
     },
     availablity: {
-      type: Int,
+      type: Number, // Changed from Int to Number
       required: true,
     },
     description: {
@@ -25,7 +25,12 @@ const BordingSchema = new mongoose.Schema(
     images: {
       type: [String],
       required: true,
-    }
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // assuming you have a User model
+      required: true,
+    },
   }
 );
 
