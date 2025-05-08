@@ -4,11 +4,11 @@
 
 :root {
     --primary-bg: #ffffff;
-    --secondry-bg: #f1f1f1;
+    --secondry-bg: #b9b7b7;
     --primary-text: #000000;
     --custom-border: #d1d1d1;
     --icon-color:#333333;
-    --hover-color:#3e1313;
+    --hover-color:#b9b7b7;
   }
   
   .dark {
@@ -17,7 +17,7 @@
     --primary-text: #ffffff;
     --custom-border: #444444;
     --icon-color:#bbbbbb;
-    --hover-color:#9d9797;
+    --hover-color:#353333;
   }
   
   /* Utility Classes Using Variables */
@@ -45,7 +45,7 @@
   .icon-color {
     color: var(--icon-color);
   }
-  .hover-color{
+  .hover-color:hover{
     background-color: var(--hover-color);
 
   }
