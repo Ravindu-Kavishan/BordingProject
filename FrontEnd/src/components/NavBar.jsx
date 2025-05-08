@@ -7,13 +7,13 @@ import {
   FaBars,
   FaTimes,
   FaHeart,
+  FaRegHeart,
 } from "react-icons/fa";
 import { useFavorites } from "../services/FavoriteContext";
 
 export default function NavBar() {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const { setShowOnlyFavorites, showOnlyFavorites } = useFavorites();
 
   useEffect(() => {
@@ -60,7 +60,11 @@ export default function NavBar() {
           className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110"
           onClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
         >
-          <FaHeart className="hart-color cursor-pointer" />
+          {showOnlyFavorites ? (
+            <FaHeart className="hart-color" />
+          ) : (
+            <FaRegHeart className="primary-text" />
+          )}
         </button>
         <button
           onClick={() => setDarkMode(!darkMode)}
