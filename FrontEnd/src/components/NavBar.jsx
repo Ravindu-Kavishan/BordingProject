@@ -8,11 +8,13 @@ import {
   FaTimes,
   FaHeart,
 } from "react-icons/fa";
-import SideBar from "./SideBar";
+import { useFavorites } from "../services/FavoriteContext";
 
 export default function NavBar() {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { setShowOnlyFavorites, showOnlyFavorites } = useFavorites();
 
   useEffect(() => {
     if (darkMode) {
@@ -54,8 +56,11 @@ export default function NavBar() {
 
       {/* Right: Desktop only */}
       <div className="hidden md:flex items-center gap-4 text-xl">
-        <button className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110">
-          <FaHeart className="icon-color cursor-pointer" />
+        <button
+          className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110"
+          onClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
+        >
+          <FaHeart className="hart-color cursor-pointer" />
         </button>
         <button
           onClick={() => setDarkMode(!darkMode)}
