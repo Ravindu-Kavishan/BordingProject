@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import { FavoriteProvider } from "../services/FavoriteContext";
 import SideBar from "../components/SideBar";
 
 export default function PlaceDetails() {
