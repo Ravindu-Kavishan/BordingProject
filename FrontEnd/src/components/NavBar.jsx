@@ -68,7 +68,7 @@ export default function NavBar() {
           )}
         </button>
 
-        <button className="flex items-center gap-2 px-4 py-1 custom-border primary-text rounded-full hover:secondry-bg cursor-pointer">
+        <button className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color cursor-pointer">
           <FaUserCircle className="text-xl" />
           <span className="text-sm font-medium">Sign in</span>
         </button>

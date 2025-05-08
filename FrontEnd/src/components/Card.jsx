@@ -24,9 +24,9 @@ export default function Card({ thumbnail, title, channel, views, time}) {
           className="absolute top-2 right-2 text-xl primary-bg rounded-full p-1 shadow-md hover:scale-110 transition"
         >
           {isFavorite ? (
-            <FaHeart className="text-red-500" />
+            <FaHeart className="hart-color" />
           ) : (
-            <FaRegHeart className="text-gray-400" />
+            <FaRegHeart className="primary-text" />
           )}
         </button>
       </div>
@@ -35,8 +35,8 @@ export default function Card({ thumbnail, title, channel, views, time}) {
       <div className="flex gap-3 mt-2">
         <div className="flex flex-col">
           <h3 className="text-sm font-semibold primary-text">{title}</h3>
-          <p className="text-xs text-gray-500 dark:text-gray-400">{channel}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">
+          <p className="text-xs primary-text">{channel}</p>
+          <p className="text-xs primary-text">
             {views} • {time}
           </p>
         </div>
