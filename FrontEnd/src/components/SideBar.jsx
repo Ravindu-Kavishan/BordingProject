@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaCompass,
   FaHome,
@@ -8,6 +8,7 @@ import {
   FaSignInAlt,
   FaSignOutAlt,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
   const items = [
@@ -19,12 +20,14 @@ export default function SideBar() {
     { icon: <FaSignInAlt />, label: "Back Gate", category: "gate" },
     { icon: <FaSignOutAlt />, label: "Front Gate", category: "gate" },
   ];
+  const navigate = useNavigate();
 
   const [selectedByCategory, setSelectedByCategory] = useState({});
 
   const handleSelect = (item) => {
     if (item.category === "all") {
-      setSelectedByCategory({ });
+      setSelectedByCategory({});
+      navigate("/");
     } else {
       setSelectedByCategory((prev) => ({
         ...prev,
