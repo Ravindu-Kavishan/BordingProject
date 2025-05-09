@@ -42,7 +42,7 @@ export default function PlaceDetails() {
   }, [place.images.length]);
 
   return (
-    <div className="primary-bg min-h-screen text-white">
+    <div className="primary-bg min-h-screen primary-text">
       <NavBar />
       <div className="flex">
         <div className="hidden md:block">
@@ -50,7 +50,6 @@ export default function PlaceDetails() {
         </div>
 
         <div className="p-4 max-w-6xl mx-auto space-y-6">
-          <p className="text-gray-400 text-sm">ID: {id}</p>
           <h1 className="text-4xl font-bold underline text-center">
             {place.name}
           </h1>
@@ -71,7 +70,7 @@ export default function PlaceDetails() {
                 key={index}
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
-                className="h-32 w-full object-cover rounded-lg border border-white/20 cursor-pointer hover:opacity-80"
+                className="h-32 w-full object-cover rounded-lg border custom-border cursor-pointer hover:opacity-80"
                 onClick={() => setCurrentIndex(index)}
               />
             ))}
@@ -80,27 +79,27 @@ export default function PlaceDetails() {
           {/* Place Info */}
           <div className="grid md:grid-cols-2 gap-6">
             {/* Place Information Card */}
-            <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
-              <h2 className="text-3xl font-bold mb-4 text-emerald-300 flex items-center gap-2">
+            <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
+              <h2 className="text-3xl font-bold mb-4 primary-text flex items-center gap-2">
                 🏡 Place Information
               </h2>
               <ul className="space-y-3 text-lg">
                 <li>
-                  <span className="font-semibold text-white/80">🏷 Type:</span>{" "}
+                  <span className="font-semibold primary-text">🏷 Type:</span>{" "}
                   {place.type}
                 </li>
                 <li>
-                  <span className="font-semibold text-white/80">
+                  <span className="font-semibold primary-text">
                     🛏 Availability:
                   </span>{" "}
                   {place.availablity} rooms
                 </li>
                 <li>
-                  <span className="font-semibold text-white/80">🎯 For:</span>{" "}
+                  <span className="font-semibold primary-text">🎯 For:</span>{" "}
                   {place.forWhome}
                 </li>
                 <li>
-                  <span className="font-semibold text-white/80">
+                  <span className="font-semibold primary-text">
                     📍 Location:
                   </span>{" "}
                   {place.location}
@@ -110,37 +109,37 @@ export default function PlaceDetails() {
             </div>
 
             {/* Owner Contact Card */}
-            <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
-              <h2 className="text-3xl font-bold mb-4 text-cyan-300 flex items-center gap-2">
+            <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
+              <h2 className="text-3xl font-bold mb-4 primary-text flex items-center gap-2">
                 👤 Owner Contact
               </h2>
               <ul className="space-y-3 text-lg">
                 <li>
-                  <span className="font-semibold text-white/80">📞 Phone:</span>{" "}
+                  <span className="font-semibold primary-text">📞 Phone:</span>{" "}
                   {place.owner.conatactno}
                 </li>
                 <li>
-                  <span className="font-semibold text-white/80">
+                  <span className="font-semibold primary-text">
                     💬 WhatsApp:
                   </span>{" "}
                   {place.owner.wahtsapptno}
                 </li>
                 <li>
-                  <span className="font-semibold text-white/80">✉️ Email:</span>{" "}
+                  <span className="font-semibold primary-text">✉️ Email:</span>{" "}
                   {place.owner.email}
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
-            <h2 className="text-3xl font-bold mb-4 text-emerald-300 flex items-center gap-2">
+          <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
+            <h2 className="text-3xl font-bold mb-4 primary-text flex items-center gap-2">
               🏡 Description
             </h2>
             <ul className="space-y-3 text-lg">
               
               <li>
-                <span className="font-semibold text-white/80">
+                <span className="font-semibold primary-text">
                   📝 Description:
                 </span>{" "}
                 {place.description}
