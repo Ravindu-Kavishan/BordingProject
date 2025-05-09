@@ -70,17 +70,28 @@ export default function NavBar() {
           className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110"
           onClick={handleFavoriteToggle}
         >
-          {isFav ? <FaHeart className="hart-color" /> : <FaRegHeart className="primary-text" />}
+          {isFav ? (
+            <FaHeart className="hart-color" />
+          ) : (
+            <FaRegHeart className="primary-text" />
+          )}
         </button>
 
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110 cursor-pointer"
         >
-          {darkMode ? <FaSun className="icon-color" /> : <FaMoon className="icon-color" />}
+          {darkMode ? (
+            <FaSun className="icon-color" />
+          ) : (
+            <FaMoon className="icon-color" />
+          )}
         </button>
 
-        <button className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color cursor-pointer">
+        <button
+          className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color cursor-pointer"
+          onClick={() => navigate("/Register")}
+        >
           <FaUserCircle className="text-xl" />
           <span className="text-sm font-medium">Sign in</span>
         </button>
@@ -97,7 +108,11 @@ export default function NavBar() {
                 setMenuOpen(false);
               }}
             >
-              {isFav ? <FaHeart className="icon-color" /> : <FaRegHeart className="icon-color" />}
+              {isFav ? (
+                <FaHeart className="icon-color" />
+              ) : (
+                <FaRegHeart className="icon-color" />
+              )}
               <span className="text-sm primary-text">Favorite Places</span>
             </button>
 
@@ -105,7 +120,11 @@ export default function NavBar() {
               onClick={() => setDarkMode(!darkMode)}
               className="flex items-center gap-2 secondry-bg p-2 rounded-md"
             >
-              {darkMode ? <FaSun className="icon-color" /> : <FaMoon className="icon-color" />}
+              {darkMode ? (
+                <FaSun className="icon-color" />
+              ) : (
+                <FaMoon className="icon-color" />
+              )}
               <span className="text-sm primary-text">Toggle Theme</span>
             </button>
 
