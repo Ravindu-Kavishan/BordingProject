@@ -1,59 +1,118 @@
 @import "tailwindcss";
-@import 'leaflet/dist/leaflet.css';
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-    --primary-bg: #ffffff;
-    --secondry-bg: #b9b7b7;
-    --primary-text: #000000;
-    --custom-border: #d1d1d1;
-    --icon-color:#333333;
-    --hover-color:#b9b7b7;
-    --hart-color:#f30707;
-  }
-  
-  .dark {
-    --primary-bg: #1b1919;
-    --secondry-bg: #353333;
-    --primary-text: #ffffff;
-    --custom-border: #444444;
-    --icon-color:#bbbbbb;
-    --hover-color:#353333;
-    --hart-color:#f30707;
-  }
-  
-  /* Utility Classes Using Variables */
-  .primary-bg {
-    background-color: var(--primary-bg);
-  }
-  
-  .secondry-bg {
-    background-color: var(--secondry-bg);
-  }
-  
-  .primary-text {
-    color: var(--primary-text);
-  }
-  
-  .placeholder-primary-text::placeholder {
-    color: var(--primary-text);
-    opacity: 0.7;
-  }
-  
-  .custom-border {
-    border: 1px solid var(--custom-border);
-  }
+  --primary-bg: #ffffff;
+  --secondry-bg: #b9b7b7;
+  --primary-text: #000000;
+  --custom-border: #d1d1d1;
+  --icon-color: #333333;
+  --hover-color: #b9b7b7;
+  --hart-color: #f30707;
+  --red-background: #ffe2e2;
 
-  .icon-color {
-    color: var(--icon-color);
-  }
-  .hover-color:hover{
-    background-color: var(--hover-color);
+  --auth-bg:#b9b7b7;
+  --auth-secondry-bg:#ffffff;
+  --auth-theam-text-color: #7315e7;
+  --auth-inp-bg-color: #d4b7fa;
+  --auth-button: #7315e7;
+  --auth-button-secondry: #D4B7FA;
+  --auth-button-text:#ffffff;
+  --auth-button-secondry-text:#7315e7;
+}
 
-  }
-  .hart-color{
-    color: var(--hart-color);
-  }
-  
-  
+.dark {
+  --primary-bg: #1b1919;
+  --secondry-bg: #353333;
+  --primary-text: #ffffff;
+  --custom-border: #444444;
+  --icon-color: #bbbbbb;
+  --hover-color: #353333;
+  --hart-color: #f30707;
+  --red-background: #f59191;
+
+  --auth-bg:#1b1919;
+  --auth-secondry-bg:#353333;
+  --auth-theam-text-color: #7315e7;
+  --auth-inp-bg-color: #d4b7fa;
+  --auth-button: #7315e7;
+  --auth-button-secondry: #D4B7FA;
+  --auth-button-text:#ffffff;
+  --auth-button-secondry-text:#7315e7;
+
+}
+
+/* Utility Classes Using Variables */
+.primary-bg {
+  background-color: var(--primary-bg);
+}
+
+.secondry-bg {
+  background-color: var(--secondry-bg);
+}
+
+.primary-text {
+  color: var(--primary-text);
+}
+
+.placeholder-primary-text::placeholder {
+  color: var(--primary-text);
+  opacity: 0.7;
+}
+
+.custom-border {
+  border: 1px solid var(--custom-border);
+}
+
+.icon-color {
+  color: var(--icon-color);
+}
+.hover-color:hover {
+  background-color: var(--hover-color);
+}
+.hart-color {
+  color: var(--hart-color);
+}
+
+.red-background {
+  background-color: var(--red-background);
+}
+
+.auth-bg{
+  background-color: var(--auth-bg);
+
+}
+
+.auth-secondry-bg{
+  background-color: var(--auth-secondry-bg);
+
+}
+.auth-theam-text-color {
+  color: var(--auth-theam-text-color);
+}
+
+.auth-theam-placeholder-color::placeholder {
+  color: var(--auth-theam-text-color);
+}
+
+.auth-inp-bg-color {
+  background-color: var(--auth-inp-bg-color);
+}
+
+.auth-button{
+  background-color: var(--auth-button);
+}
+
+.auth-button-secondry{
+  background-color: var(--auth-button-secondry);
+}
+
+.auth-button-text{
+  color: var(--auth-button-text);
+}
+
+.auth-button-secondry-text{
+  color: var(--auth-button-secondry-text);
+}

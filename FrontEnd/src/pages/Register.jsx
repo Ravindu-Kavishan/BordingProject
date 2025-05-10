@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
 import SuccessMSG from "../components/SuccessMSG";
@@ -25,15 +26,8 @@ export default function Register() {
 
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const navigate=useNavigate();
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-    setErrorMsg("");
-    setSuccessMsg("");
-  };
 
   const handleSubmit = () => {
     const { name, email, contactNo, whatsappNo, password, confirmPassword } =
@@ -76,9 +70,9 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#D4B7FA] to-[#F0E6FF]">
-      <div className="w-full max-w-md p-6 rounded-2xl shadow-2xl bg-white">
-        <h2 className="text-center text-2xl font-extrabold mb-6 text-[#7315E7]">
+    <div className="min-h-screen flex items-center justify-center auth-bg">
+      <div className="w-full max-w-md p-6 rounded-2xl shadow-2xl  auth-secondry-bg">
+        <h2 className="text-center text-2xl font-extrabold mb-6 auth-theam-text-color">
           Register
         </h2>
 
@@ -86,7 +80,7 @@ export default function Register() {
         {successMsg && <SuccessMSG message={successMsg} />}
 
         <InputField
-          placeholder="Full Name"
+          placeholder="Name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           name="name"
@@ -140,9 +134,21 @@ export default function Register() {
 
         <Button
           text="Register"
-          color="#7315E7"
-          tcolor="#fff"
+          color="auth-button"
+          tcolor="auth-button-text"
           onClick={handleSubmit}
+        />
+        <Button
+          text="LogIn"
+          color="auth-button-secondry"
+          tcolor="auth-button-secondry-text"
+          onClick={()=>navigate("/Login")}
+        />
+        <Button
+          text="<-Back"
+          color="auth-button-secondry"
+          tcolor="auth-button-secondry-text"
+          onClick={()=>navigate("/")}
         />
       </div>
     </div>

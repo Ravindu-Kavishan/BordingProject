@@ -21,14 +21,14 @@ export default function InputField({
 
   return (
     <div className="flex justify-center">
-      <div className="rounded-4xl bg-[#D4B7FA] w-11/12 flex items-center px-3 mb-2 py-1 border-2 border-transparent hover:border-black transition duration-300">
+      <div className="rounded-4xl auth-inp-bg-color w-11/12 flex items-center px-3 mb-2 py-1 border-2 border-transparent  transition duration-300">
         {renderIcon()}
         <input
           type={isPassword ? (showPassword ? "text" : "password") : type}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className="bg-transparent outline-none placeholder-[#7315E7] text-[#7315E7] w-full text-sm "
+          className="bg-transparent outline-none auth-theam-placeholder-color auth-theam-text-color w-full text-sm "
           style={{
             outline: "none" /* Remove outline */,
             boxShadow: "none" /* Remove focus box shadow */,
