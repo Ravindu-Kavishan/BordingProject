@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
 import ForgotPassword from "./pages/ForgotPassword";
 import SubmitOTP from "./pages/SubmitOTP";
+import ChangePasword from "./pages/ChangePasword";
 function App() {
 
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/LogIn" element={<LogIn/>} />
           <Route path="/ForgotPassword" element={<ForgotPassword/>} />
           <Route path="/SubmitOTP" element={<SubmitOTP/>} />
+          <Route path="/ChangePasword" element={<ChangePasword/>} />
         </Routes>
     </Router>
   );
