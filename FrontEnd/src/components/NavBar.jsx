@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// components/NavBar.jsx
+import React, { useEffect, useState } from "react";
 import {
   FaSearch,
   FaUserCircle,
@@ -11,28 +12,24 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { showOnlyFavorites } from "../utils/Store/actionCreaters"; // adjust path as needed
+import {
+  showOnlyFavorites,
+  toggleDarkMode,
+} from "../utils/Store/actionCreaters";
 
 export default function NavBar() {
-  const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const isFav = useSelector((state) => state.showOnlyFavorites);
+  const dark = useSelector((state) => state.darkMode);
 
+  // Sync <html> class with dark mode
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
-  const handleFavoriteToggle = () => {
-    dispatch(showOnlyFavorites());
-  };
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   return (
     <div className="flex items-center justify-between px-4 py-2 primary-bg shadow-md sticky top-0 z-50">
@@ -44,7 +41,6 @@ export default function NavBar() {
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
-
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
           alt="YouTube Logo"
@@ -57,10 +53,10 @@ export default function NavBar() {
         <input
           type="text"
           placeholder="Search"
-          className="flex-1 px-4 py-1 rounded-l-full focus:outline-none secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text"
+          className="flex-1 px-4 py-1 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none"
         />
-        <button className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0 cursor-pointer">
-          <FaSearch className="m-1 primary-text cursor-pointer" />
+        <button className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0">
+          <FaSearch className="m-1 primary-text" />
         </button>
       </div>
 
@@ -68,7 +64,7 @@ export default function NavBar() {
       <div className="hidden md:flex items-center gap-4 text-xl">
         <button
           className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110"
-          onClick={handleFavoriteToggle}
+          onClick={() => dispatch(showOnlyFavorites())}
         >
           {isFav ? (
             <FaHeart className="hart-color" />
@@ -78,19 +74,15 @@ export default function NavBar() {
         </button>
 
         <button
-          onClick={() => setDarkMode(!darkMode)}
+          onClick={() => dispatch(toggleDarkMode())}
           className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110 cursor-pointer"
         >
-          {darkMode ? (
-            <FaSun className="icon-color" />
-          ) : (
-            <FaMoon className="icon-color" />
-          )}
+          {dark ? <FaSun className="icon-color" /> : <FaMoon className="icon-color" />}
         </button>
 
         <button
-          className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color cursor-pointer"
           onClick={() => navigate("/Register")}
+          className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color"
         >
           <FaUserCircle className="text-xl" />
           <span className="text-sm font-medium">Sign in</span>
@@ -104,7 +96,7 @@ export default function NavBar() {
             <button
               className="flex items-center gap-2 secondry-bg p-2 rounded-md"
               onClick={() => {
-                handleFavoriteToggle();
+                dispatch(showOnlyFavorites());
                 setMenuOpen(false);
               }}
             >
@@ -117,10 +109,13 @@ export default function NavBar() {
             </button>
 
             <button
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={() => {
+                dispatch(toggleDarkMode());
+                setMenuOpen(false);
+              }}
               className="flex items-center gap-2 secondry-bg p-2 rounded-md"
             >
-              {darkMode ? (
+              {dark ? (
                 <FaSun className="icon-color" />
               ) : (
                 <FaMoon className="icon-color" />
@@ -128,9 +123,15 @@ export default function NavBar() {
               <span className="text-sm primary-text">Toggle Theme</span>
             </button>
 
-            <button className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text">
+            <button
+              onClick={() => {
+                navigate("/Register");
+                setMenuOpen(false);
+              }}
+              className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text"
+            >
               <FaUserCircle className="text-xl" />
-              <span className="text-sm font-medium primary-text">Sign in</span>
+              <span className="text-sm font-medium">Sign in</span>
             </button>
           </div>
         </div>
