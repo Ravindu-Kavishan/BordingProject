@@ -77,7 +77,11 @@ export default function NavBar() {
           onClick={() => dispatch(toggleDarkMode())}
           className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110 cursor-pointer"
         >
-          {dark ? <FaSun className="icon-color" /> : <FaMoon className="icon-color" />}
+          {dark ? (
+            <FaSun className="icon-color" />
+          ) : (
+            <FaMoon className="icon-color" />
+          )}
         </button>
 
         <button
@@ -86,6 +90,14 @@ export default function NavBar() {
         >
           <FaUserCircle className="text-xl" />
           <span className="text-sm font-medium">Sign in</span>
+        </button>
+        <button
+          onClick={() => {
+            navigate("/AddBordingPlace");
+          }}
+          className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text"
+        >
+          AddBordingPlace
         </button>
       </div>
 
