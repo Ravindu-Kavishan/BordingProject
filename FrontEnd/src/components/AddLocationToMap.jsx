@@ -14,7 +14,7 @@ export default function AddLocationToMap({ onLocationSelect }) {
   });
   const [routingControl, setRoutingControl] = useState(null);
 
-  const frontGate = L.latLng(6.7962, 79.9007);
+  const frontGate = L.latLng(6.795066273114094, 79.90075349807745);
   const backGate = L.latLng(6.798574, 79.90103);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function AddLocationToMap({ onLocationSelect }) {
       doubleClickZoom: true,
       dragging: true,
       touchZoom: true,
-    }).setView([6.7962, 79.9007], 17);
+    }).setView([6.795066273114094, 79.90075349807745], 17);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
@@ -44,75 +44,6 @@ export default function AddLocationToMap({ onLocationSelect }) {
     style.innerHTML = `.leaflet-routing-container { display: none !important; }`;
     document.head.appendChild(style);
 
-    // map.on("click", function (e) {
-    //   const { lat, lng } = e.latlng;
-
-    //   // Remove previous marker
-    //   if (selectedMarker) {
-    //     map.removeLayer(selectedMarker);
-    //   }
-
-    //   const marker = L.marker([lat, lng])
-    //     .addTo(map)
-    //     .bindPopup("Selected Location")
-    //     .openPopup();
-
-    //   setSelectedMarker(marker);
-    //   setLocationData({ lat, lng, locationName: "" });
-
-    //   if (routingControl) {
-    //     map.removeControl(routingControl);
-    //   }
-
-    //   const startPoint = L.latLng(lat, lng);
-
-    //   const getRouteInfo = (toGate) => {
-    //     return new Promise((resolve) => {
-    //       const tempControl = L.Routing.control({
-    //         waypoints: [startPoint, toGate],
-    //         router: L.Routing.osrmv1({ profile: "foot" }), // Use walking profile
-    //         routeWhileDragging: false,
-    //         addWaypoints: false,
-    //         draggableWaypoints: false,
-    //         show: false,
-    //       }).addTo(map);
-
-    //       tempControl.on("routesfound", function (e) {
-    //         const route = e.routes[0];
-    //         const distance = route.summary.totalDistance; // in meters
-    //         const duration = route.summary.totalTime; // in seconds
-    //         map.removeControl(tempControl);
-    //         resolve({ distance, duration, gate: toGate });
-    //       });
-    //     });
-    //   };
-
-    //   Promise.all([getRouteInfo(frontGate), getRouteInfo(backGate)]).then(
-    //     ([front, back]) => {
-    //       const shorter = front.distance < back.distance ? front : back;
-
-    //       // Log shortest route info
-    //       console.log("Shortest Route:");
-    //       console.log("Distance (m):", shorter.distance);
-    //       console.log(
-    //         "Estimated Time (min):",
-    //         (shorter.duration / 60).toFixed(2)
-    //       );
-
-    //       const newRoutingControl = L.Routing.control({
-    //         waypoints: [startPoint, shorter.gate],
-    //         router: L.Routing.osrmv1({ profile: "foot" }),
-    //         routeWhileDragging: false,
-    //         addWaypoints: false,
-    //         draggableWaypoints: false,
-    //         fitSelectedRoutes: true,
-    //         show: false,
-    //       }).addTo(map);
-
-    //       setRoutingControl(newRoutingControl);
-    //     }
-    //   );
-    // });
 
     map.on("click", function (e) {
       const { lat, lng } = e.latlng;
@@ -213,15 +144,15 @@ export default function AddLocationToMap({ onLocationSelect }) {
 
   return (
     <div className="p-4 space-y-4">
-      <h2 className="text-2xl font-bold">Select Boarding Location</h2>
+      <h2 className="text-2xl font-bold addPlace-Text">Select Boarding Location</h2>
       <div
         id="map"
         className="w-full h-[400px] rounded-xl shadow-md border border-gray-300"
       ></div>
 
       {selectedMarker && (
-        <div className="mt-4 bg-white p-4 rounded shadow border">
-          <label className="block font-medium text-gray-700 mb-2">
+        <div className="mt-4 addPlace-b p-4 rounded shadow border">
+          <label className="block font-medium addPlace-Text mb-2">
             Name of Location:
           </label>
           <input
@@ -229,7 +160,8 @@ export default function AddLocationToMap({ onLocationSelect }) {
             value={locationData.locationName}
             onChange={handleNameChange}
             placeholder="e.g., Green View Boarding"
-            className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
+            className="addPlace-Text w-full border custom-border rounded px-3 py-2 focus:outline-none focus:ring-2 addPlace-inputForcus"
+            
           />
         </div>
       )}
