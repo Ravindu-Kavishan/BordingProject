@@ -5,7 +5,17 @@ import "leaflet-routing-machine";
 
 export default function AddLocationToMap({ onLocationSelect }) {
   const [selectedMarker, setSelectedMarker] = useState(null);
-  const [locationData, setLocationData] = useState({ lat: null, lng: null, locationName: "" });
+  const [locationData, setLocationData] = useState({
+    lat: null,
+    lng: null,
+    locationName: "",
+    distance: null,
+    duration: null,
+  });
+  const [routingControl, setRoutingControl] = useState(null);
+
+  const frontGate = L.latLng(6.7962, 79.9007);
+  const backGate = L.latLng(6.798574, 79.90103);
 
   useEffect(() => {
     const existingMap = L.DomUtil.get("map");
@@ -26,19 +36,83 @@ export default function AddLocationToMap({ onLocationSelect }) {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    // map.setMaxBounds([
-    //   [6.79, 79.89],
-    //   [6.8, 79.91],
-    // ]);
-
-    const uniFrountLatLng = [6.7962, 79.9007];
-    L.marker(uniFrountLatLng).addTo(map).bindPopup("UOM Frount Gate").openPopup();
-    const uniBackLatLng = [6.798574, 79.901030];
-    L.marker(uniBackLatLng).addTo(map).bindPopup("UOM Back Gate").openPopup();
+    // Mark gates
+    L.marker(frontGate).addTo(map).bindPopup("UOM Front Gate").openPopup();
+    L.marker(backGate).addTo(map).bindPopup("UOM Back Gate");
 
     const style = document.createElement("style");
     style.innerHTML = `.leaflet-routing-container { display: none !important; }`;
     document.head.appendChild(style);
+
+    // map.on("click", function (e) {
+    //   const { lat, lng } = e.latlng;
+
+    //   // Remove previous marker
+    //   if (selectedMarker) {
+    //     map.removeLayer(selectedMarker);
+    //   }
+
+    //   const marker = L.marker([lat, lng])
+    //     .addTo(map)
+    //     .bindPopup("Selected Location")
+    //     .openPopup();
+
+    //   setSelectedMarker(marker);
+    //   setLocationData({ lat, lng, locationName: "" });
+
+    //   if (routingControl) {
+    //     map.removeControl(routingControl);
+    //   }
+
+    //   const startPoint = L.latLng(lat, lng);
+
+    //   const getRouteInfo = (toGate) => {
+    //     return new Promise((resolve) => {
+    //       const tempControl = L.Routing.control({
+    //         waypoints: [startPoint, toGate],
+    //         router: L.Routing.osrmv1({ profile: "foot" }), // Use walking profile
+    //         routeWhileDragging: false,
+    //         addWaypoints: false,
+    //         draggableWaypoints: false,
+    //         show: false,
+    //       }).addTo(map);
+
+    //       tempControl.on("routesfound", function (e) {
+    //         const route = e.routes[0];
+    //         const distance = route.summary.totalDistance; // in meters
+    //         const duration = route.summary.totalTime; // in seconds
+    //         map.removeControl(tempControl);
+    //         resolve({ distance, duration, gate: toGate });
+    //       });
+    //     });
+    //   };
+
+    //   Promise.all([getRouteInfo(frontGate), getRouteInfo(backGate)]).then(
+    //     ([front, back]) => {
+    //       const shorter = front.distance < back.distance ? front : back;
+
+    //       // Log shortest route info
+    //       console.log("Shortest Route:");
+    //       console.log("Distance (m):", shorter.distance);
+    //       console.log(
+    //         "Estimated Time (min):",
+    //         (shorter.duration / 60).toFixed(2)
+    //       );
+
+    //       const newRoutingControl = L.Routing.control({
+    //         waypoints: [startPoint, shorter.gate],
+    //         router: L.Routing.osrmv1({ profile: "foot" }),
+    //         routeWhileDragging: false,
+    //         addWaypoints: false,
+    //         draggableWaypoints: false,
+    //         fitSelectedRoutes: true,
+    //         show: false,
+    //       }).addTo(map);
+
+    //       setRoutingControl(newRoutingControl);
+    //     }
+    //   );
+    // });
 
     map.on("click", function (e) {
       const { lat, lng } = e.latlng;
@@ -53,7 +127,69 @@ export default function AddLocationToMap({ onLocationSelect }) {
         .openPopup();
 
       setSelectedMarker(marker);
-      setLocationData({ lat, lng, name: "" }); // reset name
+
+      if (routingControl) {
+        map.removeControl(routingControl);
+      }
+
+      const startPoint = L.latLng(lat, lng);
+
+      const getRouteInfo = (toGate) => {
+        return new Promise((resolve) => {
+          const tempControl = L.Routing.control({
+            waypoints: [startPoint, toGate],
+            router: L.Routing.osrmv1({ profile: "foot" }),
+            routeWhileDragging: false,
+            addWaypoints: false,
+            draggableWaypoints: false,
+            show: false,
+          }).addTo(map);
+
+          tempControl.on("routesfound", function (e) {
+            const route = e.routes[0];
+            const distance = route.summary.totalDistance;
+            const duration = route.summary.totalTime;
+            map.removeControl(tempControl);
+            resolve({ distance, duration, gate: toGate });
+          });
+        });
+      };
+
+      Promise.all([getRouteInfo(frontGate), getRouteInfo(backGate)]).then(
+        ([front, back]) => {
+          const shorter = front.distance < back.distance ? front : back;
+
+          console.log("Shortest Route:");
+          console.log("Distance (m):", shorter.distance);
+          console.log(
+            "Estimated Time (min):",
+            (shorter.duration / 60).toFixed(2)
+          );
+
+          const newRoutingControl = L.Routing.control({
+            waypoints: [startPoint, shorter.gate],
+            router: L.Routing.osrmv1({ profile: "foot" }),
+            routeWhileDragging: false,
+            addWaypoints: false,
+            draggableWaypoints: false,
+            fitSelectedRoutes: true,
+            show: false,
+          }).addTo(map);
+
+          setRoutingControl(newRoutingControl);
+
+          const updatedData = {
+            lat,
+            lng,
+            locationName: "",
+            distance: shorter.distance,
+            duration: shorter.duration,
+          };
+
+          setLocationData(updatedData);
+          onLocationSelect(updatedData);
+        }
+      );
     });
 
     return () => {
@@ -62,17 +198,16 @@ export default function AddLocationToMap({ onLocationSelect }) {
     };
   }, []);
 
-  // Handle name input
   const handleNameChange = (e) => {
     const updatedData = { ...locationData, locationName: e.target.value };
     setLocationData(updatedData);
 
-    // Update marker popup
     if (selectedMarker) {
-      selectedMarker.bindPopup(e.target.value || "Selected Location").openPopup();
+      selectedMarker
+        .bindPopup(e.target.value || "Selected Location")
+        .openPopup();
     }
 
-    // Send full data to parent
     onLocationSelect(updatedData);
   };
 

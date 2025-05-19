@@ -12,6 +12,8 @@ export default function AddBordingPlace() {
     lat: "",
     lng: "",
     locationName: "",
+    distance: "",
+    duration: "",
   });
 
   const handleChange = (e) => {
@@ -19,12 +21,20 @@ export default function AddBordingPlace() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLocationSelect = ({ lat, lng, locationName }) => {
+  const handleLocationSelect = ({
+    lat,
+    lng,
+    locationName,
+    distance,
+    duration,
+  }) => {
     setFormData((prev) => ({
       ...prev,
       lat: lat.toFixed(6),
       lng: lng.toFixed(6),
       locationName,
+      distance,
+      duration,
     }));
   };
 
