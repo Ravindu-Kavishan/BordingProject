@@ -15,12 +15,14 @@ const userSchema = new mongoose.Schema({
     ],
   },
   contactNumber: {
-    type: Number,
+    type: String,
     required: true,
+    match: [/^07\d{8}$/, "Contact number must start with '07' and be 10 digits long"],
   },
   whatsappNumber: {
-    type: Number,
+    type: String,
     required: true,
+    match: [/^07\d{8}$/, "WhatsApp number must start with '07' and be 10 digits long"],
   },
   password: {
     type: String,
