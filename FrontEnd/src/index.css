@@ -53,7 +53,8 @@
   --auth-button-text:#ffffff;
   --auth-button-secondry-text:#7315e7;
 
-  --addPlace-bg:#101828;
+  /* --addPlace-bg:#101828; */
+  --addPlace-bg:#1b1919;
   --addPlace-Text:#ffffff;
   --addPlace-inptborder:#4a5565;
   --addPlace-button:#155dfc;

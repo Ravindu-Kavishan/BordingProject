@@ -200,7 +200,7 @@ export default function AddBordingPlace() {
   };
 
   return (
-    <div className=" primary-bg max-w-screen pt-10 ">
+    <div className=" secondry-bg max-w-screen pt-10 ">
       <div className="max-w-2xl mx-auto p-6 addPlace-bg rounded-xl shadow-md mt-10">
         <h2 className="text-2xl font-bold mb-6 text-center addPlace-Text">
           Add Boarding Place
