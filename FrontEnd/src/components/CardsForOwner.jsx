@@ -1,18 +1,31 @@
 import React from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { FaTrash } from "react-icons/fa"; // Correct icon
 import { useNavigate } from "react-router-dom";
-import { addToFavorite } from "../utils/Store/actionCreaters"; // optional
 
-export default function Card({ thumbnail, title, channel, views, time, id }) {
-  const dispatch = useDispatch();
+export default function CardsForOwner({
+  thumbnail,
+  title,
+  channel,
+  views,
+  time,
+  id,
+}) {
   const navigate = useNavigate();
 
-  const favorites = useSelector((state) => state.favoritePlaces);
-  const isFav = favorites.some((fav) => fav.id === id);
-
-  const cardData = { thumbnail, title, channel, views, time, id };
-
+  if (id === "addBording") {
+    return (
+      <div className="relative w-full flex flex-col gap-2 cursor-pointer">
+        <div className="relative">
+          <img
+            src={thumbnail}
+            alt="Thumbnail"
+            className="w-full h-48 rounded-lg object-cover"
+            onClick={() => navigate(`/AddBordingPlace`)}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full flex flex-col gap-2 cursor-pointer">
@@ -24,14 +37,13 @@ export default function Card({ thumbnail, title, channel, views, time, id }) {
           onClick={() => navigate(`/ThePlace/${id}`)}
         />
         <button
-          onClick={() => dispatch(addToFavorite(cardData))}
+          onClick={() => {
+            // Add your delete logic here
+            console.log("Delete clicked for id:", id);
+          }}
           className="absolute top-2 right-2 text-xl primary-bg rounded-full p-1 shadow-md hover:scale-110 transition"
         >
-          {isFav ? (
-            <FaHeart className="hart-color" />
-          ) : (
-            <FaRegHeart className="primary-text" />
-          )}
+          <FaTrash className="hart-color" />
         </button>
       </div>
       <div className="flex gap-3 mt-2">
