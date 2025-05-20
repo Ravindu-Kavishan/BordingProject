@@ -34,7 +34,7 @@ export default function CardsForOwner({
           src={thumbnail}
           alt="Thumbnail"
           className="w-full h-48 rounded-lg object-cover"
-          onClick={() => navigate(`/ThePlace/${id}`)}
+          onClick={() => navigate(`/OwnerPlace/${id}`)}
         />
         <button
           onClick={() => {
