@@ -22,12 +22,12 @@ export default function reducer(state = initialState, action) {
 
     case ADD_TO_FAVORITE: {
       const isAlreadyFavorite = state.favoritePlaces.some(
-        (p) => p.id === action.place.id
+        (p) => p._id === action.place._id
       );
       return {
         ...state,
         favoritePlaces: isAlreadyFavorite
-          ? state.favoritePlaces.filter((p) => p.id !== action.place.id)
+          ? state.favoritePlaces.filter((p) => p._id !== action.place._id)
           : [...state.favoritePlaces, action.place],
       };
     }

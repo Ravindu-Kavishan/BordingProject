@@ -14,7 +14,7 @@ const BordingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    for: {
+    forWhome: {
       type: String,
       required: true,
     },
