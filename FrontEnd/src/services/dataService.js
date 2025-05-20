@@ -1,11 +1,9 @@
 import axios from "axios";
-import { BACKEND_URL } from "../utils/backendURL"; 
+import { BACKEND_URL } from "../utils/backendURL";
 
 const getAllPlaces = async (formData) => {
   try {
-    const response = await axios.get(
-      `${BACKEND_URL}/users/getAllPlaces`
-    );
+    const response = await axios.get(`${BACKEND_URL}/users/getAllPlaces`);
     return { success: true, data: response.data };
   } catch (error) {
     return {
@@ -18,12 +16,13 @@ const getAllPlaces = async (formData) => {
   }
 };
 
-const getPlace = async (bordingId) => {
+const getPlaceDetails = async (bordingId) => {
   try {
     const response = await axios.post(
       `${BACKEND_URL}/users/getPlaseDetails`,
       bordingId
     );
+    console.log(response);
     return { success: true, data: response.data };
   } catch (error) {
     return {
@@ -36,4 +35,4 @@ const getPlace = async (bordingId) => {
   }
 };
 
-export default { getAllPlaces,getPlace };
+export default { getAllPlaces, getPlaceDetails };

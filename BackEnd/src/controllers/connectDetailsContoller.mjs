@@ -6,7 +6,7 @@ const conectPlaseWithOwner = async (req, res, next) => {
     const data = { placeData,ownerData };
     res
       .status(201)
-      .json({ message: "Place added successfully", data });
+      .json({ message: "successfull", data });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
