@@ -2,13 +2,13 @@ import User from "../models/userModel.mjs";
 
 const registerUser = async (req, res, next) => {
   try {
-    const { name, email, password, userEmailExist } = req.body;
+    const { name, email, password, userEmailExist,contactNumber,whatsappNumber } = req.body;
 
     if (userEmailExist) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const user = await User.create({ name, email, password });
+    const user = await User.create({ name, email, password,contactNumber,whatsappNumber });
     req.body.user = user;
     next();
   } catch (error) {
