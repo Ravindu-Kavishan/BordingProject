@@ -1,28 +1,56 @@
 import mongoose from "mongoose";
 
 const BordingSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
+  {  
     type: {
       type: String,
       required: true,
     },
     availablity: {
-      type: Number, // Changed from Int to Number
+      type: Number, 
       required: true,
     },
     description: {
       type: String,
       required: true,
     },
-    forWhome: {
+    for: {
       type: String,
       required: true,
     },
-    location: {
+    gate: {
+      type: String,
+      required: true,
+    },
+    street: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number, 
+      required: true,
+    },
+    lat: {
+      type: Number, 
+      required: true,
+    },
+    lng: {
+      type: Number, 
+      required: true,
+    },
+    locationName: {
+      type: String,
+      required: true,
+    },
+    distance: {
+      type: Number, 
+      required: true,
+    },
+    duration: {
+      type: Number, 
+      required: true,
+    },
+    thumbnail: {
       type: String,
       required: true,
     },
@@ -32,7 +60,7 @@ const BordingSchema = new mongoose.Schema(
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // assuming you have a User model
+      ref: "User", 
       required: true,
     },
   }

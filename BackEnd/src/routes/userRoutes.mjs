@@ -6,14 +6,14 @@ import hashPasswordMiddleware from "../middleware/hashPasswordMiddleware.mjs";
 import jwtTokenMiddleware from "../middleware/jwtTokenMiddleware.mjs";
 
 const { registerUser,loginUser,sendUserDetails,updateOwner } = userController;
-const { addPlace,getPlace,getMyPlaces,updatePlace } =bordingController
+const { addPlace,getPlace,getMyPlaces,updatePlace,getALLPlaces } =bordingController
 const { getUserByEmail } = userMiddlewares;
 const { createHashPassword,compareHashPassword } = hashPasswordMiddleware;
 const { generateJWTToken,authorizeWithJWT } = jwtTokenMiddleware;
 
 const router = express.Router();
 
-router.post("/getAllPlaces",);
+router.get("/getAllPlaces",getALLPlaces);
 router.post("/login", getUserByEmail,loginUser ,compareHashPassword,generateJWTToken);
 router.get("/getOwner",authorizeWithJWT, sendUserDetails);
 router.put("/updateOwner",authorizeWithJWT,createHashPassword,updateOwner);

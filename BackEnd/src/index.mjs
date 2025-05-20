@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import connectDB from './config/db.mjs';
 import ownerRoutes from "./routes/ownerRoutes.mjs";
+import userRoutes from "./routes/userRoutes.mjs"
 import cookieParser from 'cookie-parser';
 import cors from 'cors'; 
 
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/owners', ownerRoutes);
+app.use('/users', userRoutes);
 
 
 app.listen(PORT, () => {
