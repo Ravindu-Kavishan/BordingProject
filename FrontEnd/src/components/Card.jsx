@@ -2,7 +2,7 @@ import React from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToFavorite } from "../utils/Store/actionCreaters"; // optional
+import { addToFavorite } from "../utils/Store/actionCreaters";
 
 export default function Card({
   thumbnail,

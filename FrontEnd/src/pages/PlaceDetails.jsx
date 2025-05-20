@@ -6,31 +6,39 @@ export default function PlaceDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const place = {
-    images: [
-      "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg",
-      "https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg",
-      "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg",
-      "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg",
-      "https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg",
-      "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg",
-    ],
-    name: "Place One",
-    type: "Apartment",
-    availablity: 3,
-    description: "Cozy 2-bedroom apartment near campus.",
-    forWhome: "Students",
-    location: "123 Main Street, City Name",
-    owner: {
-      conatactno: "0742959366",
-      wahtsapptno: "0742959366",
-      email: "example@uom.lk",
-    },
-  };
+  // const place = {
+  //   images: [
+  //     "https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/K4TOrB7at0Y/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/ScMzIvxBSi4/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/DLX62G4lc44/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/tgbNymZ7vqY/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/ktvTqknDobU/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg",
+  //     "https://i.ytimg.com/vi/60ItHLz5WEA/hqdefault.jpg",
+  //   ],
+  //   name: "Place One",
+  //   type: "Apartment",
+  //   availablity: 3,
+  //   description: "Cozy 2-bedroom apartment near campus.",
+  //   forWhome: "Students",
+  //   location: "123 Main Street, City Name",
+  //   owner: {
+  //     conatactno: "0742959366",
+  //     wahtsapptno: "0742959366",
+  //     email: "example@uom.lk",
+  //   },
+  // };
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
+  useEffect(async () => {
+    const placeDetails = await authService.loginUser({
+      bordingId: id,
+    });
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === place.images.length - 1 ? 0 : prevIndex + 1

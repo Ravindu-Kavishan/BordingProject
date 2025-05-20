@@ -13,9 +13,27 @@ const getAllPlaces = async (formData) => {
       message:
         error.response?.data?.message ||
         error.message ||
-        "Registration failed.",
+        "Geting Details failed.",
     };
   }
 };
 
-export default { getAllPlaces };
+const getPlace = async (bordingId) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/users/getPlaseDetails`,
+      bordingId
+    );
+    return { success: true, data: response.data };
+  } catch (error) {
+    return {
+      success: false,
+      message:
+        error.response?.data?.message ||
+        error.message ||
+        "Geting Details failed.",
+    };
+  }
+};
+
+export default { getAllPlaces,getPlace };

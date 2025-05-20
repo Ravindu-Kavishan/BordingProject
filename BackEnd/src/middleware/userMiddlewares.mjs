@@ -16,4 +16,14 @@ const getUserByEmail = async (req, res, next) => {
   }
 };
 
-export default {getUserByEmail};
+const getUserDetails = async (req, res, next) => {
+  try {
+    const userId = req.body.place.userId;
+    req.body.user = await User.findById({ _id: userId },{password:0,__v:0});
+    next();
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export default {getUserByEmail,getUserDetails};
