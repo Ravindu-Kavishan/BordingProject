@@ -58,4 +58,14 @@ const updatePlace = async (req, res, next) => {
   }
 };
 
-export default { addPlace, getPlace, getMyPlaces, updatePlace };
+const getALLPlaces = async (req, res, next) => {
+  try {
+    const bording = await Bording.find(); // ✅ corrected method
+    res.status(200).json(bording);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+export default { addPlace, getPlace, getMyPlaces, updatePlace,getALLPlaces };

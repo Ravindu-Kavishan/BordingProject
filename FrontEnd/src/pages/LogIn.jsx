@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
 import SuccessMSG from "../components/SuccessMSG";
 import Button from "../components/Button";
-
+import authService from "../services/authService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,7 +18,9 @@ export default function LogIn() {
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    setErrorMsg("");
+    setSuccessMsg("");
     const { email, password } = formData;
 
     if (!email || !password) {
@@ -26,18 +28,20 @@ export default function LogIn() {
       return;
     }
 
-    console.log("LogIn Data:", {
+    const result = await authService.loginUser({
       email,
-
       password,
     });
 
-    setSuccessMsg("LogIn successfully!");
-    setFormData({
-      email: "",
-
-      password: "",
-    });
+    if (result.success) {
+      setSuccessMsg("Login successfully!");
+      setFormData({
+        email: "",
+        password: "",
+      });
+    } else {
+      setErrorMsg(result.message);
+    }
   };
 
   return (

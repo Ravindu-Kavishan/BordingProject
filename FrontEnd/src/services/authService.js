@@ -1,10 +1,10 @@
 import axios from "axios";
-import { BACKEND_URL } from "../utils/backendURL"; // ✅ also fix this import if not already
+import { BACKEND_URL } from "../utils/backendURL"; 
 
 const registerUser = async (formData) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/owners/register`, // ✅ fixed line
+      `${BACKEND_URL}/owners/register`, 
       formData,
       {
         withCredentials: true,
@@ -22,4 +22,25 @@ const registerUser = async (formData) => {
   }
 };
 
-export default { registerUser };
+const loginUser = async (formData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/owners/login`, 
+      formData,
+      {
+        withCredentials: true,
+      }
+    );
+    return { success: true, data: response.data };
+  } catch (error) {
+    return {
+      success: false,
+      message:
+        error.response?.data?.message ||
+        error.message ||
+        "Login failed.",
+    };
+  }
+};
+
+export default { registerUser,loginUser };
