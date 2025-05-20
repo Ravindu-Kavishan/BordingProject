@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
 import SuccessMSG from "../components/SuccessMSG";
 import Button from "../components/Button";
-
+import authService from "../services/authService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -18,26 +18,34 @@ export default function Register() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    contactNo: "",
-    whatsappNo: "",
+    contactNumber: "",
+    whatsappNumber: "",
     password: "",
     confirmPassword: "",
   });
 
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
+  const handleSubmit = async () => {
+    setErrorMsg("");
+    setSuccessMsg("");
 
-  const handleSubmit = () => {
-    const { name, email, contactNo, whatsappNo, password, confirmPassword } =
-      formData;
+    const {
+      name,
+      email,
+      contactNumber,
+      whatsappNumber,
+      password,
+      confirmPassword,
+    } = formData;
 
     if (
       !name ||
       !email ||
-      !contactNo ||
-      !whatsappNo ||
+      !contactNumber ||
+      !whatsappNumber ||
       !password ||
       !confirmPassword
     ) {
@@ -50,28 +58,35 @@ export default function Register() {
       return;
     }
 
-    console.log("Registration Data:", {
+    const result = await authService.registerUser({
       name,
       email,
-      contactNo,
-      whatsappNo,
+      contactNumber,
+      whatsappNumber,
       password,
     });
 
-    setSuccessMsg("Registered successfully!");
-    setFormData({
-      name: "",
-      email: "",
-      contactNo: "",
-      whatsappNo: "",
-      password: "",
-      confirmPassword: "",
-    });
+    if (result.success) {
+      setSuccessMsg("Registered successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        contactNumber: "",
+        whatsappNumber: "",
+        password: "",
+        confirmPassword: "",
+      });
+
+      // Optionally redirect after a delay
+      // setTimeout(() => navigate("/Login"), 2000);
+    } else {
+      setErrorMsg(result.message);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center auth-bg">
-      <div className="w-full max-w-md p-6 rounded-2xl shadow-2xl  auth-secondry-bg">
+      <div className="w-full max-w-md p-6 rounded-2xl shadow-2xl auth-secondry-bg">
         <h2 className="text-center text-2xl font-extrabold mb-6 auth-theam-text-color">
           Register
         </h2>
@@ -98,18 +113,22 @@ export default function Register() {
 
         <InputField
           placeholder="Contact Number"
-          value={formData.contactNo}
-          onChange={(e) => setFormData({ ...formData, contactNo: e.target.value })}
-          name="contactNo"
+          value={formData.contactNumber}
+          onChange={(e) =>
+            setFormData({ ...formData, contactNumber: e.target.value })
+          }
+          name="contactNumber"
           type="tel"
           icon={<FontAwesomeIcon icon={faPhone} />}
         />
 
         <InputField
           placeholder="WhatsApp Number"
-          value={formData.whatsappNo}
-          onChange={(e) => setFormData({ ...formData, whatsappNo: e.target.value })}
-          name="whatsappNo"
+          value={formData.whatsappNumber}
+          onChange={(e) =>
+            setFormData({ ...formData, whatsappNumber: e.target.value })
+          }
+          name="whatsappNumber"
           type="tel"
           icon={<FontAwesomeIcon icon={faCommentDots} />}
         />
@@ -117,7 +136,9 @@ export default function Register() {
         <InputField
           placeholder="Password"
           value={formData.password}
-          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
           name="password"
           isPassword={true}
           icon={<FontAwesomeIcon icon={faLock} />}
@@ -126,7 +147,9 @@ export default function Register() {
         <InputField
           placeholder="Confirm Password"
           value={formData.confirmPassword}
-          onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, confirmPassword: e.target.value })
+          }
           name="confirmPassword"
           isPassword={true}
           icon={<FontAwesomeIcon icon={faLock} />}
@@ -142,13 +165,13 @@ export default function Register() {
           text="LogIn"
           color="auth-button-secondry"
           tcolor="auth-button-secondry-text"
-          onClick={()=>navigate("/Login")}
+          onClick={() => navigate("/Login")}
         />
         <Button
           text="<-Back"
           color="auth-button-secondry"
           tcolor="auth-button-secondry-text"
-          onClick={()=>navigate("/")}
+          onClick={() => navigate("/")}
         />
       </div>
     </div>
