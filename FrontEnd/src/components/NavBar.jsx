@@ -93,11 +93,11 @@ export default function NavBar() {
         </button>
         <button
           onClick={() => {
-            navigate("/AddBordingPlace");
+            navigate("/MyBordings");
           }}
           className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text"
         >
-          AddBordingPlace
+          MyBordings
         </button>
       </div>
 
