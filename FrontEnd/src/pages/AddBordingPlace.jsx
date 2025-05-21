@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DynamicFormField from "../components/DynamicFormField";
+import ImageUploarder from "../components/ImageUploarder";
 
 export default function AddBordingPlace() {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ export default function AddBordingPlace() {
     forWhome: "",
     gate: "",
     street: "",
-    Location_Link: "", 
+    Location_Link: "",
     doubleBeds: "",
     singleBeds: "",
     chairs: "",
@@ -19,8 +20,8 @@ export default function AddBordingPlace() {
     showers: "",
     toilets: "",
     commodes: "",
-    bathrooms_are_dedicated_for:"",
-    descreption_about_bathrooms:"",
+    bathrooms_are_dedicated_for: "",
+    descreption_about_bathrooms: "",
     special_features: "",
     description: "",
     price: "",
@@ -63,7 +64,11 @@ export default function AddBordingPlace() {
     { label: "Number of Showers", name: "showers", type: "number" },
     { label: "Number of Toilets", name: "toilets", type: "number" },
     { label: "Number of Commodes", name: "commodes", type: "number" },
-    { label: "Bathrooms are dedicated for", name: "bathrooms_are_dedicated_for", type: "number" },
+    {
+      label: "Bathrooms are dedicated for",
+      name: "bathrooms_are_dedicated_for",
+      type: "number",
+    },
     {
       label: "Descreption About Bathrooms",
       name: "descreption_about_bathrooms",
@@ -108,6 +113,11 @@ export default function AddBordingPlace() {
               onChange={handleChange}
             />
           ))}
+          <ImageUploarder
+            onUpload={(url) => {
+              console.log("Uploaded image URL:", url);
+            }}
+          />
           <button
             type="submit"
             className="w-full addPlace-button addPlace-buttonText py-2 px-4 rounded hover:bg-blue-700 transition"
