@@ -10,9 +10,7 @@ import MyBordings from "./pages/MyBordings";
 import AddBordingPlace from "./pages/AddBordingPlace";
 import PlaceDetails from "./pages/PlaceDetails";
 
-
-import ImageUploader from "./components/ImageUploarder";
-
+import ImageUploarder from "./components/ImageUploarder";
 function App() {
   return (
     <Router>
@@ -27,7 +25,16 @@ function App() {
         <Route path="/MyBordings" element={<MyBordings />} />
         <Route path="/AddBordingPlace" element={<AddBordingPlace />} />
         <Route path="/OwnerPlace/:id" element={<PlaceDetails />} />
-        <Route path="/ImageUploader" element={<ImageUploader />} />
+        <Route
+          path="/ImageUploader"
+          element={
+            <ImageUploarder
+              onUpload={(url) => {
+                console.log("Uploaded image URL:", url);
+              }}
+            />
+          }
+        />
       </Routes>
     </Router>
   );

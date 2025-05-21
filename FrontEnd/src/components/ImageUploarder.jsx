@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 
 export default function ImageUploarder({ onUpload }) {
 
@@ -8,7 +9,7 @@ export default function ImageUploarder({ onUpload }) {
     const formData = new FormData();
     formData.append("image", image);
 
-    const response = await fetch("http://localhost:8000/upload", {
+    const response = await fetch("http://localhost:3000/uploadImgs/upload", {
       method: "POST",
       body: formData,
     });
