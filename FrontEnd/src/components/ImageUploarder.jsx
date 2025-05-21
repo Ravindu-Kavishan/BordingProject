@@ -1,78 +1,3 @@
-// import React from "react";
-// import { useState } from "react";
-
-// function ThumbnailUploarder({ onUpload }) {
-//   const [image, setImage] = useState(null);
-
-//   const handleUpload = async () => {
-//     const formData = new FormData();
-//     formData.append("image", image);
-
-//     const response = await fetch("http://localhost:3000/uploadImgs/thumbnail", {
-//       method: "POST",
-//       body: formData,
-//     });
-
-//     // const data = await response.json();
-
-//     const contentType = response.headers.get("content-type");
-//     if (contentType && contentType.includes("application/json")) {
-//       const data = await response.json();
-//       console.log(data);
-//       onUpload(data.imageUrl); // backend should return URL
-//     } else {
-//       const text = await response.text();
-//       console.error("Server responded with non-JSON:", text);
-//     }
-
-//     // onUpload(data); // backend should return URL
-//   };
-
-//   return (
-//     <div>
-//       <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-//       <button onClick={handleUpload}>Upload</button>
-//     </div>
-//   );
-// }
-
-// export default function ImagesUploader({ onUpload }) {
-//   const [images, setImages] = useState([]);
-
-//   const handleUpload = async () => {
-//     if (images.length === 0) return;
-
-//     const formData = new FormData();
-//     for (const image of images) {
-//       formData.append("images", image); // use plural key
-//     }
-
-//     const response = await fetch("http://localhost:3000/uploadImgs/images", {
-//       method: "POST",
-//       body: formData,
-//     });
-
-//     const data = await response.json();
-//     // data.imageUrls should be an array of URLs returned by backend
-//     onUpload(data.imageUrls);
-//   };
-
-//   return (
-//     <div>
-//       <input
-//         type="file"
-//         multiple
-//         onChange={(e) => setImages(Array.from(e.target.files))}
-//       />
-//       <button onClick={handleUpload}>Upload</button>
-//     </div>
-//   );
-// }
-
-// export { ThumbnailUploarder, ImagesUploader };
-
-
-
 import React, { useState } from "react";
 
 // Single image uploader
@@ -109,8 +34,16 @@ function ThumbnailUploarder({ onUpload }) {
 
   return (
     <div className="p-4 border rounded-lg shadow-md w-full addPlace-inptborder mx-auto text-center">
-      <h2 className="text-lg font-semibold mb-4 addPlace-Text">Upload Thumbnail</h2>
-      {preview && <img src={preview} alt="Preview" className="mb-4 w-32 h-32 object-cover mx-auto rounded-md" />}
+      <h2 className="text-lg font-semibold mb-4 addPlace-Text">
+        Upload Thumbnail
+      </h2>
+      {preview && (
+        <img
+          src={preview}
+          alt="Preview"
+          className="mb-4 w-32 h-32 object-cover mx-auto rounded-md"
+        />
+      )}
       <input
         type="file"
         onChange={handleFileChange}
@@ -157,10 +90,17 @@ function ImagesUploader({ onUpload }) {
 
   return (
     <div className="p-4 border rounded-lg shadow-md w-full addPlace-inptborder  mx-auto text-center mt-8">
-      <h2 className="text-lg font-semibold mb-4 addPlace-Text">Upload Multiple Images</h2>
+      <h2 className="text-lg font-semibold mb-4 addPlace-Text">
+        Upload Multiple Images
+      </h2>
       <div className="flex flex-wrap justify-center gap-2 mb-4">
         {previews.map((url, index) => (
-          <img key={index} src={url} alt={`Preview ${index}`} className="w-24 h-24 object-cover rounded-md" />
+          <img
+            key={index}
+            src={url}
+            alt={`Preview ${index}`}
+            className="w-24 h-24 object-cover rounded-md"
+          />
         ))}
       </div>
       <input
