@@ -22,7 +22,6 @@ const getPlaceDetails = async (bordingId) => {
       `${BACKEND_URL}/users/getPlaseDetails`,
       bordingId
     );
-    console.log(response);
     return { success: true, data: response.data };
   } catch (error) {
     return {
