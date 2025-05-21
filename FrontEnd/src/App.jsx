@@ -9,6 +9,7 @@ import ChangePasword from "./pages/ChangePasword";
 import MyBordings from "./pages/MyBordings";
 import AddBordingPlace from "./pages/AddBordingPlace";
 import PlaceDetails from "./pages/PlaceDetails";
+import { ThumbnailUploarder } from "./components/ImageUploarder";
 
 function App() {
   return (
@@ -24,6 +25,16 @@ function App() {
         <Route path="/MyBordings" element={<MyBordings />} />
         <Route path="/AddBordingPlace" element={<AddBordingPlace />} />
         <Route path="/OwnerPlace/:id" element={<PlaceDetails />} />
+        <Route
+          path="/ThumbnailUploarder"
+          element={
+            <ThumbnailUploarder
+              onUpload={(url) => {
+                console.log("Uploaded image URL:", url);
+              }}
+            />
+          }
+        />
       </Routes>
     </Router>
   );

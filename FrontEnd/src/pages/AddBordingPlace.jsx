@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DynamicFormField from "../components/DynamicFormField";
-import ImageUploarder from "../components/ImageUploarder";
+import {ThumbnailUploarder,ImagesUploader} from "../components/ImageUploarder"; // correct spelling
+
 
 export default function AddBordingPlace() {
   const [formData, setFormData] = useState({
@@ -113,14 +114,22 @@ export default function AddBordingPlace() {
               onChange={handleChange}
             />
           ))}
-          <ImageUploarder
+          <ThumbnailUploarder
             onUpload={(url) => {
               console.log("Uploaded image URL:", url);
             }}
           />
+
+          <ImagesUploader
+            onUpload={(url) => {
+              console.log("Uploaded image URL:", url);
+            }}
+          />
+
+          
           <button
             type="submit"
-            className="w-full addPlace-button addPlace-buttonText py-2 px-4 rounded hover:bg-blue-700 transition"
+            className="w-full addPlace-button addPlace-buttonText py-2 px-4 rounded transition"
           >
             Submit
           </button>

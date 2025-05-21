@@ -4,7 +4,7 @@ import uploads from "../controllers/imageController.mjs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const { uploadImage, uploadImages } = uploads; // Destructure correctly
+const { uploadImage, uploadImages } = uploads; // Destructure correcy
 
 const router = express.Router();
 
