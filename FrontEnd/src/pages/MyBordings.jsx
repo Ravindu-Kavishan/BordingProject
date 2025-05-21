@@ -14,6 +14,7 @@ export default function MyBordings() {
     const fetchPlaces = async () => {
       const result = await dataService.getMyPlaces();
       if (result.success) {
+        // console.log(result);
         dispatch(addmyplaces(result.data));
       } else {
         setError(result.message);
@@ -32,9 +33,9 @@ export default function MyBordings() {
   const displayCards = [...MyCards, addBording];
 
   return (
-    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 primary-bg">
-      {displayCards.map((card) => (
-        <CardsForOwner key={card._id} {...card} />
+    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 primary-bg min-h-screen">
+      {displayCards.map((card) => (<div>
+        <CardsForOwner key={card._id} {...card} /></div>
       ))}
     </div>
   );

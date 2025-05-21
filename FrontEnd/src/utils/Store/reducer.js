@@ -36,13 +36,11 @@ export default function reducer(state = initialState, action) {
       return { ...state, showOnlyFavorites: !state.showOnlyFavorites };
 
     case ADD_MYPLACES:
-      console.log("ADD_MYPLACES payload:", action.myplaces);
       return { ...state, myPlaces: [...action.myPlaces] };
 
     case TOGGLE_DARK_MODE: {
       const next = !state.darkMode;
       localStorage.setItem("dark", next);
-      console.log("good mood");
       return { ...state, darkMode: next };
     }
 
