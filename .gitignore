@@ -3,4 +3,6 @@ Backend/node_modules/
 Backend/.env
 Backend/package-lock.json
 FrountEnd/node_modules/
+Backend/uploads/
+
 
