@@ -22,7 +22,17 @@ const getMyPlaces = async (req, res, next) => {
   try {
     const userId = req.user.id;
 
-    const myBordings = await Bording.find({ userId }, { name: 1, _id: 1 });
+    const myBordings = await Bording.find(
+      { userId },
+      {
+        type: 1,
+        availablity: 1,
+        forWhome: 1,
+        price: 1,
+        distance: 1,
+        thumbnail: 1,
+      }
+    );
 
     res.status(200).json(myBordings);
   } catch (error) {

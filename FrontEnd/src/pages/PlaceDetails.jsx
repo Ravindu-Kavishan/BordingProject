@@ -10,7 +10,7 @@ export default function PlaceDetails() {
   const [owner, setOwner] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Fetch place details
+
   useEffect(() => {
     const fetchPlaceDetails = async () => {
       const response = await dataService.getPlaceDetails({ bordingId: id });
@@ -20,7 +20,7 @@ export default function PlaceDetails() {
 
         setPlace(place);
         setOwner(owner);
-        setCurrentIndex(0); // reset slideshow
+        setCurrentIndex(0); 
       } else {
         console.error(response.message);
       }
@@ -29,7 +29,6 @@ export default function PlaceDetails() {
     fetchPlaceDetails();
   }, [id]);
 
-  // Image slideshow effect
   useEffect(() => {
     if (!Array.isArray(place.images) || place.images.length === 0) return;
 
@@ -49,7 +48,6 @@ export default function PlaceDetails() {
           {place.locationName}
         </h1>
 
-        {/* Slideshow */}
         <div className="relative w-full h-[250px] sm:h-[400px] rounded-xl overflow-hidden shadow-lg">
           {place.images && place.images.length > 0 ? (
             <img
@@ -64,7 +62,6 @@ export default function PlaceDetails() {
           )}
         </div>
 
-        {/* Thumbnails */}
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
           {place.images &&
             place.images.map((image, index) => (
@@ -80,9 +77,7 @@ export default function PlaceDetails() {
             ))}
         </div>
 
-        {/* Info Section */}
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Place Info */}
           <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
               🏠 Place Information
@@ -115,7 +110,6 @@ export default function PlaceDetails() {
             </ul>
           </div>
 
-          {/* Owner Contact */}
           <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
               👤 Owner Contact
@@ -141,7 +135,6 @@ export default function PlaceDetails() {
           </div>
         </div>
 
-        {/* Description */}
         <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
             📝 Description
@@ -154,7 +147,13 @@ export default function PlaceDetails() {
           </ul>
         </div>
 
-        {/* Map */}
+        <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
+            📝 Location
+          </h2>
+
+        </div>
+
         <BoardingMap placeLat={6.793} placeLng={79.8995} />
       </div>
     </div>

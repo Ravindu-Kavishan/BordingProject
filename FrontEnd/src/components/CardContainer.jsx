@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
-import { addPlaces } from "../utils/Store/actionCreaters"; // optional if you use actions.js
+import { addPlaces } from "../utils/Store/actionCreaters"; 
 import dataService from "../services/dataService";
 
 export default function CardContainer() {
