@@ -9,6 +9,10 @@ import ChangePasword from "./pages/ChangePasword";
 import MyBordings from "./pages/MyBordings";
 import AddBordingPlace from "./pages/AddBordingPlace";
 import PlaceDetails from "./pages/PlaceDetails";
+
+
+import ImageUploader from "./components/ImageUploarder";
+
 function App() {
   return (
     <Router>
@@ -23,6 +27,7 @@ function App() {
         <Route path="/MyBordings" element={<MyBordings />} />
         <Route path="/AddBordingPlace" element={<AddBordingPlace />} />
         <Route path="/OwnerPlace/:id" element={<PlaceDetails />} />
+        <Route path="/ImageUploader" element={<ImageUploader />} />
       </Routes>
     </Router>
   );
