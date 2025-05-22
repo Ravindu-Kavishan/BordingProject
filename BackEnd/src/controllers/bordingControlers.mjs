@@ -74,11 +74,11 @@ const getALLPlaces = async (req, res, next) => {
       {},
       {
         type: 1,
-        availablity: 1,
+        availability: 1,
         forWhome: 1,
         price: 1,
-        distance: 1,
-        thumbnail: 1,
+        thumbnailUrl: 1,
+        gate:1,
       }
     );
     res.status(200).json(bording);

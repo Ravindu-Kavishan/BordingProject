@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { addToFavorite } from "../utils/Store/actionCreaters";
 
 export default function Card({
-  thumbnail,
+  thumbnailUrl,
   type,
   forWhome,
-  availablity,
+  availability,
   price,
-  distance,
+  gate,
   _id,
 }) {
   const dispatch = useDispatch();
@@ -20,12 +20,12 @@ export default function Card({
   const isFav = favorites.some((fav) => fav._id === _id);
 
   const cardData = {
-    thumbnail,
+    thumbnailUrl,
     type,
     forWhome,
-    availablity,
+    availability,
     price,
-    distance,
+    gate,
     _id,
   };
 
@@ -33,8 +33,8 @@ export default function Card({
     <div className="relative w-full flex flex-col gap-2 cursor-pointer">
       <div className="relative">
         <img
-          src={thumbnail}
-          alt="Thumbnail"
+          src={thumbnailUrl}
+          alt="thumbnailUrl"
           className="w-full h-48 rounded-lg object-cover"
           onClick={() => navigate(`/ThePlace/${_id}`)}
         />
@@ -59,13 +59,13 @@ export default function Card({
             For: <span className="font-medium">{forWhome}</span>
           </p>
           <p>
-            Availability: <span className="font-medium">{availablity}</span>
+            Availability: <span className="font-medium">{availability}</span>
           </p>
           <p>
             Price: <span className="font-medium">Rs. {price}</span>
           </p>
           <p>
-            Distance: <span className="font-medium">{distance} m</span>
+            gate: <span className="font-medium">{gate} m</span>
           </p>
         </div>
       </div>
