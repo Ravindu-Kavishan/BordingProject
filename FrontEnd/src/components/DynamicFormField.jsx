@@ -1,6 +1,3 @@
-// components/DynamicFormField.js
-import React from "react";
-
 export default function DynamicFormField({ field, value, onChange }) {
   const {
     label,
@@ -8,15 +5,18 @@ export default function DynamicFormField({ field, value, onChange }) {
     type = "text",
     required = true,
     options = [],
-    rows = 4, // default for textarea
+    rows = 4,
+    extraElement = null,
   } = field;
 
   return (
     <div className="mb-4">
       <label className="addPlace-Text block mb-1 font-medium">
         {label}: {required && <span className="text-red-500">*</span>}
+        {extraElement && <span className="ml-2">{extraElement}</span>}
       </label>
 
+      {/* Inputs remain the same */}
       {type === "select" ? (
         <select
           name={name}
