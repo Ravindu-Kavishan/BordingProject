@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CardsForOwner from "../components/CardsForOwner";
 import { addmyplaces } from "../utils/Store/actionCreaters";
 import dataService from "../services/dataService";
+import addProjectIcon from "../assets/addProjectIcon.svg";
 
 export default function MyBordings() {
   const dispatch = useDispatch();
@@ -25,8 +26,7 @@ export default function MyBordings() {
   }, [dispatch]);
 
   const addBording = {
-    thumbnail:
-      "https://img.freepik.com/premium-vector/screen-that-has-video-it_988987-29345.jpg",
+    thumbnailUrl: addProjectIcon,
     _id: "addBording",
   };
 
@@ -34,8 +34,10 @@ export default function MyBordings() {
 
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 primary-bg min-h-screen">
-      {displayCards.map((card) => (<div>
-        <CardsForOwner key={card._id} {...card} /></div>
+      {displayCards.map((card) => (
+        <div>
+          <CardsForOwner key={card._id} {...card} />
+        </div>
       ))}
     </div>
   );

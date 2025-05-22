@@ -30,7 +30,7 @@ export default function Home() {
     <div className="primary-bg min-h-screen">
       <NavBar />
       <div className="flex">
-        <div className="hidden md:block">
+        <div className="hidden md:block ">
           <SideBar />
         </div>
         <div className="flex-1">
