@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import uploardService from "../services/uploardService";
+import { CheckCircle, Loader2 } from "lucide-react";
 
 // Single image uploader
 function ThumbnailUploader({ onUpload }) {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [status, setStatus] = useState("not");
 
   const handleUpload = async () => {
+    setStatus("uploading");
     const formData = new FormData();
     formData.append("image", image);
 
@@ -17,6 +20,7 @@ function ThumbnailUploader({ onUpload }) {
     } else {
       console.error("Image upload failed:", result.message);
     }
+    setStatus("uploaded");
   };
 
   const handleFileChange = (e) => {
@@ -39,6 +43,7 @@ function ThumbnailUploader({ onUpload }) {
           className="mb-4 w-32 h-32 object-cover mx-auto rounded-md"
         />
       )}
+
       <input
         type="file"
         onChange={handleFileChange}
@@ -51,16 +56,23 @@ function ThumbnailUploader({ onUpload }) {
       >
         Upload
       </button>
+      {status === "uploading" && (
+        <Loader2 className="animate-spin text-blue-500 w-8 h-8" />
+      )}
+      {status === "uploaded" && (
+        <CheckCircle className="text-green-700 w-6 h-6" />
+      )}
     </div>
   );
 }
 
-
 function ImagesUploader({ onUpload }) {
   const [images, setImages] = useState([]);
   const [previews, setPreviews] = useState([]);
+  const [status, setStatus] = useState("not");
 
   const handleUpload = async () => {
+    setStatus("uploading");
     if (images.length === 0) return;
 
     const formData = new FormData();
@@ -75,6 +87,7 @@ function ImagesUploader({ onUpload }) {
     } else {
       console.error("Image upload failed:", result.message);
     }
+    setStatus("uploaded");
   };
 
   const handleFileChange = (e) => {
@@ -111,6 +124,12 @@ function ImagesUploader({ onUpload }) {
       >
         Upload All
       </button>
+      {status === "uploading" && (
+        <Loader2 className="animate-spin text-blue-500 w-8 h-8" />
+      )}
+      {status === "uploaded" && (
+        <CheckCircle className="text-green-700 w-6 h-6" />
+      )}
     </div>
   );
 }
