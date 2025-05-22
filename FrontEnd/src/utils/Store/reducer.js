@@ -7,12 +7,20 @@ import {
   ADD_MYPLACES,
 } from "./actionTypes";
 
+let favoritePlaces = [];
+try {
+  const storedFavorites = localStorage.getItem("favoritePlaces");
+  if (storedFavorites) favoritePlaces = JSON.parse(storedFavorites);
+} catch {
+  favoritePlaces = [];
+}
+
 const initialState = {
   places: [],
-  favoritePlaces: [],
+  favoritePlaces,
   showOnlyFavorites: false,
   myPlaces: [],
-  darkMode: JSON.parse(localStorage.getItem("dark") ?? "false"), // hydrate
+  darkMode: JSON.parse(localStorage.getItem("dark") ?? "false"),
 };
 
 export default function reducer(state = initialState, action) {
@@ -24,11 +32,16 @@ export default function reducer(state = initialState, action) {
       const isAlreadyFavorite = state.favoritePlaces.some(
         (p) => p._id === action.place._id
       );
+
+      const updatedFavorites = isAlreadyFavorite
+        ? state.favoritePlaces.filter((p) => p._id !== action.place._id)
+        : [...state.favoritePlaces, action.place];
+
+      localStorage.setItem("favoritePlaces", JSON.stringify(updatedFavorites));
+
       return {
         ...state,
-        favoritePlaces: isAlreadyFavorite
-          ? state.favoritePlaces.filter((p) => p._id !== action.place._id)
-          : [...state.favoritePlaces, action.place],
+        favoritePlaces: updatedFavorites,
       };
     }
 
