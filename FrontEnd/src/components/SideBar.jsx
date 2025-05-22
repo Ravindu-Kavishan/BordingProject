@@ -80,50 +80,53 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { filterd_places } from "../utils/Store/actionCreaters"; // Adjust path if needed
+import { useDispatch, useSelector } from "react-redux";
+import { filterd_places, update_filter } from "../utils/Store/actionCreaters";
 
 export default function SideBar() {
-  const dispatch = useDispatch(); // 👈 get dispatcher
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const items = [
     { icon: <FaCompass />, label: "All", category: "all" },
     { icon: <FaHome />, label: "House", category: "type" },
-    { icon: <FaBed />, label: "Rooms", category: "type" },
+    { icon: <FaBed />, label: "Room", category: "type" },
     { icon: <FaFemale />, label: "Girls", category: "forWhome" },
     { icon: <FaMale />, label: "Boys", category: "forWhome" },
     { icon: <FaSignInAlt />, label: "Frount Gate", category: "gate" },
     { icon: <FaSignOutAlt />, label: "Back Gate", category: "gate" },
   ];
 
-  const [selectedByCategory, setSelectedByCategory] = useState({
-    type: "",
-    forWhome: "",
-    gate: "",
-  });
+  const filter = useSelector((state) => state.filter);
+  const [selectedByCategory, setSelectedByCategory] = useState(filter);
 
   const handleSelect = (item) => {
     if (item.category === "all") {
-      setSelectedByCategory({ type: "", forWhome: "", gate: "" });
+      const resetFilters = { type: "", forWhome: "", gate: "" };
+      setSelectedByCategory(resetFilters);
+      dispatch(update_filter(resetFilters));
       navigate("/");
     } else {
-      setSelectedByCategory((prev) => ({
-        ...prev,
+      const updatedFilter = {
+        ...selectedByCategory,
         [item.category]: item.label,
-      }));
+      };
+      setSelectedByCategory(updatedFilter);
+      dispatch(update_filter(updatedFilter));
     }
   };
 
   useEffect(() => {
-    dispatch(filterd_places(selectedByCategory)); // 👈 dispatch filter action
-  }, [selectedByCategory, dispatch]); // include dispatch in deps
+    dispatch(filterd_places());
+  }, [selectedByCategory, dispatch]);
 
   return (
     <div className="w-full h-screen primary-bg shadow-md sticky top-14">
       <ul className="flex flex-col gap-2 py-4">
         {items.map((item, index) => {
-          const isSelected = selectedByCategory[item.category] === item.label;
+          const isSelected =
+            item.category !== "all" &&
+            selectedByCategory[item.category] === item.label;
 
           return (
             <React.Fragment key={index}>

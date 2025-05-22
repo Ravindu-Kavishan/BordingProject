@@ -6,6 +6,7 @@ import {
   TOGGLE_DARK_MODE,
   ADD_MYPLACES,
   FILTERD_PLACES,
+  UPDATE_FILTER,
 } from "./actionTypes";
 
 let favoritePlaces = [];
@@ -19,6 +20,7 @@ try {
 const initialState = {
   places: [],
   filterdPlaces: [],
+  filter: { type: "", forWhome: "", gate: "" },
   favoritePlaces,
   showOnlyFavorites: false,
   myPlaces: [],
@@ -28,7 +30,12 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case ADD_PLACES:
-      return { ...state, places: [...action.newPlaces] };
+      return {
+        ...state,
+        places: [...action.newPlaces],
+        filterdPlaces: [...action.newPlaces],
+      };
+    // add all the places to the filterdPlaces here
 
     case ADD_TO_FAVORITE: {
       const isAlreadyFavorite = state.favoritePlaces.some(
@@ -60,7 +67,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case FILTERD_PLACES: {
-      const { type, forWhome, gate } = action.filters;
+      const { type, forWhome, gate } = state.filter;
 
       const filtered = state.places.filter((place) => {
         const matchesType = !type || place.type === type;
@@ -73,6 +80,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         filterdPlaces: filtered,
+      };
+    }
+    case UPDATE_FILTER: {
+      return {
+        ...state,
+        filter: { ...action.filters },
       };
     }
 
