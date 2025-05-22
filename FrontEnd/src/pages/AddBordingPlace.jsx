@@ -78,7 +78,7 @@ export default function AddBordingPlace() {
       label: "Boarding Place For",
       name: "forWhome",
       type: "select",
-      options: ["Male", "Female", "Both_Ok"],
+      options: ["Boys", "Girls", "Both_Ok"],
     },
     {
       label: "Gate",

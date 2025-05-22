@@ -5,6 +5,7 @@ import {
   SHOW_ONLY_FAVORITES,
   TOGGLE_DARK_MODE,
   ADD_MYPLACES,
+  FILTERD_PLACES,
 } from "./actionTypes";
 
 let favoritePlaces = [];
@@ -17,6 +18,7 @@ try {
 
 const initialState = {
   places: [],
+  filterdPlaces: [],
   favoritePlaces,
   showOnlyFavorites: false,
   myPlaces: [],
@@ -55,6 +57,23 @@ export default function reducer(state = initialState, action) {
       const next = !state.darkMode;
       localStorage.setItem("dark", next);
       return { ...state, darkMode: next };
+    }
+
+    case FILTERD_PLACES: {
+      const { type, forWhome, gate } = action.filters;
+
+      const filtered = state.places.filter((place) => {
+        const matchesType = !type || place.type === type;
+        const matchesForWhome = !forWhome || place.forWhome === forWhome;
+        const matchesGate = !gate || place.gate === gate;
+
+        return matchesType && matchesForWhome && matchesGate;
+      });
+
+      return {
+        ...state,
+        filterdPlaces: filtered,
+      };
     }
 
     default:
