@@ -70,8 +70,8 @@ export default function reducer(state = initialState, action) {
       const { type, forWhome, gate } = state.filter;
 
       const filtered = state.places.filter((place) => {
-        const matchesType = !type || place.type === type;
-        const matchesForWhome = !forWhome || place.forWhome === forWhome;
+        const matchesType = !type || place.type === type|| place.type === "One floor with rooms";
+        const matchesForWhome = !forWhome || place.forWhome === forWhome|| place.forWhome === "Both Ok";
         const matchesGate = !gate || place.gate === gate;
 
         return matchesType && matchesForWhome && matchesGate;

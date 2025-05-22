@@ -73,14 +73,14 @@ export default function AddBordingPlace() {
       label: "Boarding Place Type",
       name: "type",
       type: "select",
-      options: ["House", "One_floor_with_rooms", "Room"],
+      options: ["House", "One floor with rooms", "Room"],
     },
     { label: "Availability", name: "availability", type: "number" },
     {
       label: "Boarding Place For",
       name: "forWhome",
       type: "select",
-      options: ["Boys", "Girls", "Both_Ok"],
+      options: ["Boys", "Girls", "Both Ok"],
     },
     {
       label: "Gate",
