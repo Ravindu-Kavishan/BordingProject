@@ -67,6 +67,7 @@ export default function Register() {
     });
 
     if (result.success) {
+      setErrorMsg("");
       setSuccessMsg("Registered successfully!");
       setFormData({
         name: "",
@@ -77,9 +78,8 @@ export default function Register() {
         confirmPassword: "",
       });
 
-      // Optionally redirect after a delay
-      // setTimeout(() => navigate("/Login"), 2000);
     } else {
+      setSuccessMsg("");
       setErrorMsg(result.message);
     }
   };

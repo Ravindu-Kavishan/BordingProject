@@ -51,4 +51,24 @@ const getMyPlaces = async () => {
   }
 };
 
-export default { getAllPlaces, getPlaceDetails, getMyPlaces };
+const AddPlaceDetails = async (formData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/owners/addPlace`,
+      formData,
+      {
+        withCredentials: true,
+      }
+    );
+    return { success: true, data: response.data ,message:response.message};
+  } catch (error) {
+    return {
+      success: false,
+      message:
+        error.response?.data?.message ||
+        error.message ||
+        "Geting Details failed.",
+    };
+  }
+};
+export default { getAllPlaces, getPlaceDetails, getMyPlaces, AddPlaceDetails };

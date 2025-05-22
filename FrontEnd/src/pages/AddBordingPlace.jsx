@@ -4,6 +4,9 @@ import {
   ThumbnailUploader,
   ImagesUploader,
 } from "../components/ImageUploarder";
+import dataService from "../services/dataService";
+import ErrorAlert from "../components/ErrorAllert";
+import SuccessMSG from "../components/SuccessMSG";
 
 export default function AddBordingPlace() {
   const [formData, setFormData] = useState({
@@ -25,8 +28,8 @@ export default function AddBordingPlace() {
     commodes: 0,
     bathrooms_are_dedicated_for: 0,
     descreption_about_bathrooms: "",
-    light_bill:"",
-    water_bill:"",
+    light_bill: "",
+    water_bill: "",
     special_features: "",
     description: "",
     price: 0,
@@ -34,17 +37,24 @@ export default function AddBordingPlace() {
     imageUrls: [],
   });
 
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const [gateLocationLink, setGateLocationLink] = useState("https://www.google.com/maps?q=6.795066273114094,79.90075349807745");
+  const [gateLocationLink, setGateLocationLink] = useState(
+    "https://www.google.com/maps?q=6.795066273114094,79.90075349807745"
+  );
   useEffect(() => {
     if (formData.gate === "Back_Gate_of_UOM") {
       setGateLocationLink("https://www.google.com/maps?q=6.798538,79.901047");
-    }else if(formData.gate === "Frount_Gate_of_UOM") {
-      setGateLocationLink("https://www.google.com/maps?q=6.795066273114094,79.90075349807745");
+    } else if (formData.gate === "Frount_Gate_of_UOM") {
+      setGateLocationLink(
+        "https://www.google.com/maps?q=6.795066273114094,79.90075349807745"
+      );
     }
   }, [formData.gate]);
 
@@ -136,23 +146,25 @@ export default function AddBordingPlace() {
     { label: "Price (LKR)", name: "price", type: "number" },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form submitted with data:", formData);
 
-    // If you need to send to backend
-    // fetch("/api/add-boarding-place", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // });
+    const result = await dataService.AddPlaceDetails(formData);
+    if (result.success) {
+      setErrorMsg("");
+      setSuccessMsg(result.message);
+    } else {
+      setSuccessMsg("");
+      setErrorMsg(result.message);
+    }
   };
 
   return (
     <div className="secondry-bg max-w-screen pt-10">
       <div className="max-w-2xl mx-auto p-6 addPlace-bg rounded-xl shadow-md mt-10">
+        {errorMsg && <ErrorAlert message={errorMsg} />}
+        {successMsg && <SuccessMSG message={successMsg} />}
         <h2 className="text-2xl font-bold mb-6 text-center addPlace-Text">
           Add Boarding Place
         </h2>
