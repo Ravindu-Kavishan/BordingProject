@@ -2,36 +2,15 @@ import React, { useState } from "react";
 import uploardService from "../services/uploardService";
 
 // Single image uploader
-function ThumbnailUploarder({ onUpload }) {
+function ThumbnailUploader({ onUpload }) {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
-
-  // const handleUpload = async () => {
-  //   const formData = new FormData();
-  //   formData.append("image", image);
-
-  //   // const response = await fetch("http://localhost:3000/uploadImgs/thumbnail", {
-  //   //   method: "POST",
-  //   //   body: formData,
-  //   // });
-
-  //   const response =await uploardService.uplordThumbnail(formData);
-
-  //   const contentType = response.headers.get("content-type");
-  //   if (contentType && contentType.includes("application/json")) {
-  //     const data = await response.json();
-  //     onUpload(data.imageUrl);
-  //   } else {
-  //     const text = await response.text();
-  //     console.error("Server responded with non-JSON:", text);
-  //   }
-  // };
 
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append("image", image);
 
-    const result = await uploardService.uplordThumbnail(formData);
+    const result = await uploardService.uploadThumbnail(formData);
 
     if (result.success) {
       onUpload(result.imageUrl);
@@ -76,67 +55,6 @@ function ThumbnailUploarder({ onUpload }) {
   );
 }
 
-// Multiple image uploader
-// function ImagesUploader({ onUpload }) {
-//   const [images, setImages] = useState([]);
-//   const [previews, setPreviews] = useState([]);
-
-//   const handleUpload = async () => {
-//     if (images.length === 0) return;
-
-//     const formData = new FormData();
-//     for (const image of images) {
-//       formData.append("images", image);
-//     }
-
-//     const response = await fetch("http://localhost:3000/uploadImgs/images", {
-//       method: "POST",
-//       body: formData,
-//     });
-
-//     const data = await response.json();
-//     onUpload(data.imageUrls);
-//   };
-
-//   const handleFileChange = (e) => {
-//     const files = Array.from(e.target.files);
-//     setImages(files);
-//     setPreviews(files.map((file) => URL.createObjectURL(file)));
-//   };
-
-//   return (
-//     <div className="p-4 border rounded-lg shadow-md w-full addPlace-inptborder  mx-auto text-center mt-8">
-//       <h2 className="text-lg font-semibold mb-4 addPlace-Text">
-//         Upload Multiple Images
-//       </h2>
-//       <div className="flex flex-wrap justify-center gap-2 mb-4">
-//         {previews.map((url, index) => (
-//           <img
-//             key={index}
-//             src={url}
-//             alt={`Preview ${index}`}
-//             className="w-24 h-24 object-cover rounded-md"
-//           />
-//         ))}
-//       </div>
-//       <input
-//         type="file"
-//         multiple
-//         onChange={handleFileChange}
-//         className="mb-4 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full
-//         file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
-//       />
-//       <button
-//         onClick={handleUpload}
-//         className="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition"
-//       >
-//         Upload All
-//       </button>
-//     </div>
-//   );
-// }
-
-
 
 function ImagesUploader({ onUpload }) {
   const [images, setImages] = useState([]);
@@ -150,7 +68,7 @@ function ImagesUploader({ onUpload }) {
       formData.append("images", image);
     }
 
-    const result = await uploardService.uplordImages(formData);
+    const result = await uploardService.uploadImages(formData);
 
     if (result.success) {
       onUpload(result.imageUrls); // array of image URLs
@@ -197,4 +115,4 @@ function ImagesUploader({ onUpload }) {
   );
 }
 
-export { ThumbnailUploarder, ImagesUploader };
+export { ThumbnailUploader, ImagesUploader };

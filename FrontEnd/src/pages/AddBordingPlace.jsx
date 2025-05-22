@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DynamicFormField from "../components/DynamicFormField";
 import {
-  ThumbnailUploarder,
+  ThumbnailUploader,
   ImagesUploader,
 } from "../components/ImageUploarder";
 
@@ -153,7 +153,7 @@ export default function AddBordingPlace() {
           ))}
 
           {/* Upload thumbnail and update formData */}
-          <ThumbnailUploarder
+          <ThumbnailUploader
             onUpload={(url) =>
               setFormData((prev) => ({ ...prev, thumbnailUrl: url }))
             }
