@@ -60,7 +60,7 @@ const AddPlaceDetails = async (formData) => {
         withCredentials: true,
       }
     );
-    return { success: true, data: response.data ,message:response.message};
+    return { success: true, data: response.data}; //response.message
   } catch (error) {
     return {
       success: false,

@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import SuccessMSG from "../components/SuccessMSG";
 
 export default function AddBordingPlace() {
-  const [formData, setFormData] = useState({
+  const initialFormState = {
     locationName: "",
     type: "",
     availability: 0,
@@ -36,7 +36,9 @@ export default function AddBordingPlace() {
     price: 0,
     thumbnailUrl: "",
     imageUrls: [],
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
 
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
@@ -84,7 +86,7 @@ export default function AddBordingPlace() {
       label: "Gate",
       name: "gate",
       type: "select",
-      options: ["Frount_Gate_of_UOM", "Back_Gate_of_UOM"],
+      options: ["Frount Gate", "Back Gate"],
     },
     { label: "Street", name: "street", type: "text" },
     {
@@ -160,7 +162,8 @@ export default function AddBordingPlace() {
     const result = await dataService.AddPlaceDetails(formData);
     if (result.success) {
       setErrorMsg("");
-      setSuccessMsg(result.message);
+      setSuccessMsg("Plase added successsfull.");
+      setFormData(initialFormState);
     } else {
       setSuccessMsg("");
       setErrorMsg(result.message);

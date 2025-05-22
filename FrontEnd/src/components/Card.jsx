@@ -65,7 +65,7 @@ export default function Card({
             Price: <span className="font-medium">Rs. {price}</span>
           </p>
           <p>
-            gate: <span className="font-medium">{gate} m</span>
+            gate: <span className="font-medium">{gate}</span>
           </p>
         </div>
       </div>

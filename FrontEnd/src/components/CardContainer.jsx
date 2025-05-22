@@ -7,7 +7,7 @@ import dataService from "../services/dataService";
 export default function CardContainer() {
   const dispatch = useDispatch();
 
-  const places = useSelector((state) => state.places);
+  const places = useSelector((state) => state.filterdPlaces);
   const favoritePlaces = useSelector((state) => state.favoritePlaces);
 
   const showOnlyFavorites = useSelector((state) => state.showOnlyFavorites);
