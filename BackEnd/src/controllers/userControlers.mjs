@@ -1,4 +1,5 @@
 import User from "../models/userModel.mjs";
+import nodemailer from "nodemailer";
 
 const registerUser = async (req, res, next) => {
   try {
@@ -54,4 +55,33 @@ const updateOwner = async (req, res, next) => {
   }
 };
 
-export default { registerUser, loginUser, sendUserDetails, updateOwner };
+const sendOTPByEmail = async (req, res) => {
+  try {
+    const { email,otp } = req.body.user;
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail", // or any other email service
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    // Email option
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your OTP Code From Moratuwa Bordings",
+      text: `Your OTP is: ${otp}`,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).json({ message: "OTP sent successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to send OTP", error: error.message });
+  }
+};
+
+export default { registerUser, loginUser, sendUserDetails, updateOwner,sendOTPByEmail };
