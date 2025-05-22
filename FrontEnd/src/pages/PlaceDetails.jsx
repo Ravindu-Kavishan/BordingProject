@@ -10,7 +10,6 @@ export default function PlaceDetails() {
   const [owner, setOwner] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
-
   useEffect(() => {
     const fetchPlaceDetails = async () => {
       const response = await dataService.getPlaceDetails({ bordingId: id });
@@ -20,7 +19,7 @@ export default function PlaceDetails() {
 
         setPlace(place);
         setOwner(owner);
-        setCurrentIndex(0); 
+        setCurrentIndex(0);
       } else {
         console.error(response.message);
       }
@@ -30,131 +29,175 @@ export default function PlaceDetails() {
   }, [id]);
 
   useEffect(() => {
-    if (!Array.isArray(place.images) || place.images.length === 0) return;
+    if (!Array.isArray(place.imageUrls) || place.imageUrls.length === 0) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === place.images.length - 1 ? 0 : prevIndex + 1
+        prevIndex === place.imageUrls.length - 1 ? 0 : prevIndex + 1
       );
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [place.images]);
+  }, [place.imageUrls]);
 
   return (
     <div className="primary-bg min-h-screen primary-text">
-      <div className="p-4 max-w-6xl mx-auto space-y-6">
-        <h1 className="text-3xl sm:text-4xl font-bold underline text-center">
+      <div className="p-4 max-w-6xl mx-auto space-y-8">
+        {/* Title */}
+        <h1 className="text-4xl font-bold text-center underline">
           {place.locationName}
         </h1>
 
+        {/* Image Carousel */}
         <div className="relative w-full h-[250px] sm:h-[400px] rounded-xl overflow-hidden shadow-lg">
-          {place.images && place.images.length > 0 ? (
+          {place.imageUrls && place.imageUrls.length > 0 ? (
             <img
-              src={place.images[currentIndex]}
+              src={place.imageUrls[currentIndex]}
               alt={`Slide ${currentIndex + 1}`}
               className="w-full h-full object-cover transition duration-700 ease-in-out"
             />
           ) : (
             <div className="flex items-center justify-center w-full h-full text-xl text-gray-500">
-              No Images Available
+              No images available
             </div>
           )}
         </div>
 
+        {/* Thumbnails */}
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-          {place.images &&
-            place.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Thumbnail ${index + 1}`}
-                className={`h-24 sm:h-32 w-full object-cover rounded-lg border ${
-                  index === currentIndex ? "border-blue-500" : "custom-border"
-                } cursor-pointer hover:opacity-80`}
-                onClick={() => setCurrentIndex(index)}
-              />
-            ))}
+          {place.imageUrls?.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Thumbnail ${index + 1}`}
+              className={`h-24 sm:h-32 w-full object-cover rounded-lg border ${
+                index === currentIndex ? "border-blue-500" : "custom-border"
+              } cursor-pointer hover:opacity-80`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
         </div>
 
+        {/* Info Sections */}
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
-              🏠 Place Information
-            </h2>
-            <ul className="space-y-3 text-base sm:text-lg">
-              <li>
-                <span className="font-semibold primary-text">🏷️ Type:</span>{" "}
-                {place.type}
-              </li>
-              <li>
-                <span className="font-semibold primary-text">🛏️ Availability:</span>{" "}
-                {place.availablity} rooms
-              </li>
-              <li>
-                <span className="font-semibold primary-text">👥 For:</span>{" "}
-                {place.forWhome}
-              </li>
-              <li>
-                <span className="font-semibold primary-text">📍 Street:</span>{" "}
-                {place.street}
-              </li>
-              <li>
-                <span className="font-semibold primary-text">🚪 Gate:</span>{" "}
-                {place.gate}
-              </li>
-              <li>
-                <span className="font-semibold primary-text">💰 Price:</span>{" "}
-                {place.price}
-              </li>
-            </ul>
+          {/* Place Info */}
+          <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+            <h2 className="text-2xl font-semibold mb-4">Place Information</h2>
+            <div className="space-y-3 text-base">
+              <div>
+                <strong>Type:</strong> {place.type}
+              </div>
+              <div>
+                <strong>Available:</strong> {place.availability} people
+              </div>
+              <div>
+                <strong>Suitable For:</strong> {place.forWhome}
+              </div>
+              <div>
+                <strong>Street:</strong> {place.street}
+              </div>
+              <div>
+                <strong>Gate:</strong> {place.gate}
+              </div>
+              <div>
+                <strong>Google Map:</strong>{" "}
+                <a
+                  href={place.Location_Link}
+                  target="_blank"
+                  className="text-blue-600 underline"
+                >
+                  View Location
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
-              👤 Owner Contact
-            </h2>
-            <ul className="space-y-3 text-base sm:text-lg">
-              <li>
-                <span className="font-semibold primary-text">🧑 Name:</span>{" "}
-                {owner.name}
-              </li>
-              <li>
-                <span className="font-semibold primary-text">📞 Phone:</span>{" "}
-                {owner.conatactno}
-              </li>
-              <li>
-                <span className="font-semibold primary-text">💬 WhatsApp:</span>{" "}
-                {owner.wahtsapptno}
-              </li>
-              <li>
-                <span className="font-semibold primary-text">✉️ Email:</span>{" "}
-                {owner.email}
-              </li>
-            </ul>
+          {/* Owner Info */}
+          <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+            <h2 className="text-2xl font-semibold mb-4">Owner Contact</h2>
+            <div className="space-y-3 text-base">
+              <div>
+                <strong>Name:</strong> {owner.name}
+              </div>
+              <div>
+                <strong>Phone:</strong> {owner.contactNumber}
+              </div>
+              <div>
+                <strong>WhatsApp:</strong> {owner.whatsappNumber}
+              </div>
+              <div>
+                <strong>Email:</strong> {owner.email}
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
-            📝 Description
-          </h2>
-          <ul className="space-y-3 text-base sm:text-lg">
-            <li>
-              <span className="font-semibold primary-text">🧾 Info:</span>{" "}
-              {place.description}
-            </li>
-          </ul>
+        {/* Features */}
+        <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+          <h2 className="text-2xl font-semibold mb-4">Features</h2>
+          <div className="grid sm:grid-cols-2 gap-4 text-base">
+            <div>
+              <strong>Double Beds:</strong> {place.doubleBeds}
+            </div>
+            <div>
+              <strong>Single Beds:</strong> {place.singleBeds}
+            </div>
+            <div>
+              <strong>Chairs:</strong> {place.chairs}
+            </div>
+            <div>
+              <strong>Tables:</strong> {place.tables}
+            </div>
+            <div>
+              <strong>Cloth Racks:</strong> {place.clothRacks}
+            </div>
+            <div>
+              <strong>Bathrooms:</strong> {place.bathrooms}
+            </div>
+            <div>
+              <strong>Showers:</strong> {place.showers}
+            </div>
+            <div>
+              <strong>Toilets:</strong> {place.toilets}
+            </div>
+            <div>
+              <strong>Commodes:</strong> {place.commodes}
+            </div>
+            <div>
+              <strong>Dedicated For:</strong>{" "}
+              {place.bathrooms_are_dedicated_for}
+            </div>
+            <div>
+              <strong>Bathroom Description:</strong>{" "}
+              {place.descreption_about_bathrooms}
+            </div>
+            <div>
+              <strong>Special Features:</strong> {place.special_features}
+            </div>
+          </div>
         </div>
 
-        <div className="secondry-bg backdrop-blur-md p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 primary-text flex items-center gap-2">
-            📝 Location
-          </h2>
-
+        {/* Pricing */}
+        <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+          <h2 className="text-2xl font-semibold mb-4">Pricing & Utilities</h2>
+          <div className="grid sm:grid-cols-3 gap-4 text-base">
+            <div>
+              <strong>Monthly Rent:</strong> Rs. {place.price}
+            </div>
+            <div>
+              <strong>Light Bill:</strong> Rs. {place.light_bill}
+            </div>
+            <div>
+              <strong>Water Bill:</strong> Rs. {place.water_bill}
+            </div>
+          </div>
         </div>
 
-        <BoardingMap placeLat={6.793} placeLng={79.8995} />
+        {/* Description */}
+        <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+          <h2 className="text-2xl font-semibold mb-4">Description</h2>
+          <p className="text-base">{place.description}</p>
+        </div>
       </div>
     </div>
   );
