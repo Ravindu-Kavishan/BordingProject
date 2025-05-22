@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
 import SuccessMSG from "../components/SuccessMSG";
+import { useSelector } from "react-redux";
 import Button from "../components/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +17,11 @@ export default function ForgotPassword() {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
+  const dark = useSelector((state) => state.darkMode);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   const handleSubmit = () => {
     const { email } = formData;
@@ -33,7 +39,7 @@ export default function ForgotPassword() {
     setFormData({
       email: "",
     });
-    navigate("/SubmitOTP")
+    navigate("/SubmitOTP");
   };
 
   return (

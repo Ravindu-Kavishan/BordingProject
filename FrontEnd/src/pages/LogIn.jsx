@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
@@ -6,6 +6,7 @@ import SuccessMSG from "../components/SuccessMSG";
 import Button from "../components/Button";
 import authService from "../services/authService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 export default function LogIn() {
@@ -17,6 +18,11 @@ export default function LogIn() {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
+  const dark = useSelector((state) => state.darkMode);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   const handleSubmit = async () => {
     setErrorMsg("");

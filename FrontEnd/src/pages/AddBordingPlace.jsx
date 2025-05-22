@@ -6,6 +6,7 @@ import {
 } from "../components/ImageUploarder";
 import dataService from "../services/dataService";
 import ErrorAlert from "../components/ErrorAllert";
+import { useSelector } from "react-redux";
 import SuccessMSG from "../components/SuccessMSG";
 
 export default function AddBordingPlace() {
@@ -39,6 +40,12 @@ export default function AddBordingPlace() {
 
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
+  const dark = useSelector((state) => state.darkMode);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

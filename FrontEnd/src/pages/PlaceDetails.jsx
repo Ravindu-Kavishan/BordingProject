@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import BoardingMap from "../components/BoardingMap";
+import { useSelector } from "react-redux";
 import dataService from "../services/dataService";
 
 export default function PlaceDetails() {
@@ -9,6 +10,12 @@ export default function PlaceDetails() {
   const [place, setPlace] = useState({});
   const [owner, setOwner] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const dark = useSelector((state) => state.darkMode);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   useEffect(() => {
     const fetchPlaceDetails = async () => {
