@@ -25,6 +25,8 @@ export default function AddBordingPlace() {
     commodes: 0,
     bathrooms_are_dedicated_for: 0,
     descreption_about_bathrooms: "",
+    light_bill:"",
+    water_bill:"",
     special_features: "",
     description: "",
     price: 0,
@@ -104,6 +106,18 @@ export default function AddBordingPlace() {
       type: "textarea",
       required: false,
       rows: 5,
+    },
+    {
+      label: "light_bill",
+      name: "light_bill",
+      type: "select",
+      options: ["Free_of_Charge", "Should_Pay_By_Students"],
+    },
+    {
+      label: "water_bill",
+      name: "water_bill",
+      type: "select",
+      options: ["Free_of_Charge", "Should_Pay_By_Students"],
     },
     {
       label: "Special Features",
