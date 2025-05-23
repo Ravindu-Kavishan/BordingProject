@@ -6,7 +6,7 @@ import hashPasswordMiddleware from "../middleware/hashPasswordMiddleware.mjs";
 import jwtTokenMiddleware from "../middleware/jwtTokenMiddleware.mjs";
 import OTPMiddlewere from "../middleware/OTPMiddlewere.mjs";
 
-const { registerUser,loginUser,sendUserDetails,updateOwner,sendOTPByEmail } = userController;
+const { registerUser,loginUser,sendUserDetails,updateOwner,sendOTPByEmail,compareOTPByEmail,updatePassword } = userController;
 const { addPlace,getPlace,getMyPlaces,updatePlace } =bordingController
 const { getUserByEmail } = userMiddlewares;
 const { createHashPassword,compareHashPassword } = hashPasswordMiddleware;
@@ -18,6 +18,8 @@ const router = express.Router();
 router.post("/register", getUserByEmail, createHashPassword, registerUser,generateJWTToken);
 router.post("/login", getUserByEmail,loginUser ,compareHashPassword,generateJWTToken);
 router.post("/createOTP", getUserByEmail,loginUser,createOTP,sendOTPByEmail);
+router.post("/compareOTP", getUserByEmail,loginUser,compareOTPByEmail);
+router.post("/resetPassword", getUserByEmail,loginUser,updatePassword);
 router.get("/getOwner",authorizeWithJWT, sendUserDetails);
 router.put("/updateOwner",authorizeWithJWT,createHashPassword,updateOwner);
 router.post("/addPlace",authorizeWithJWT,addPlace);
