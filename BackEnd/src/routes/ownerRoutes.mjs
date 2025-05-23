@@ -19,7 +19,7 @@ router.post("/register", getUserByEmail, createHashPassword, registerUser,genera
 router.post("/login", getUserByEmail,loginUser ,compareHashPassword,generateJWTToken);
 router.post("/createOTP", getUserByEmail,loginUser,createOTP,sendOTPByEmail);
 router.post("/compareOTP", getUserByEmail,loginUser,compareOTPByEmail);
-router.post("/resetPassword", getUserByEmail,loginUser,updatePassword);
+router.post("/resetPassword", getUserByEmail,loginUser,createHashPassword,updatePassword);
 router.get("/getOwner",authorizeWithJWT, sendUserDetails);
 router.put("/updateOwner",authorizeWithJWT,createHashPassword,updateOwner);
 router.post("/addPlace",authorizeWithJWT,addPlace);

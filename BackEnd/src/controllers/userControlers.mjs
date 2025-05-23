@@ -113,6 +113,21 @@ const compareOTPByEmail = async (req, res) => {
   }
 };
 
+const updatePassword = async (req, res) => {
+  try {
+    const {  email, password } = req.body;
+
+    const user = await User.updateOne(
+      { email },
+      { $set: { password } },
+      { runValidators: true }
+    );
+    res.status(200).json({ message: "Password updated" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export default {
   registerUser,
   loginUser,
