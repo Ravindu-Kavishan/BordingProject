@@ -13,25 +13,27 @@
   --hart-color: #f30707;
   --red-background: #ffe2e2;
 
-  --auth-bg:#b9b7b7;
-  --auth-secondry-bg:#ffffff;
+  --auth-bg: #b9b7b7;
+  --auth-secondry-bg: #ffffff;
   --auth-theam-text-color: #7315e7;
   --auth-inp-bg-color: #d4b7fa;
   --auth-button: #7315e7;
-  --auth-button-secondry: #D4B7FA;
-  --auth-button-text:#ffffff;
-  --auth-button-secondry-text:#7315e7;
+  --auth-button-secondry: #d4b7fa;
+  --auth-button-text: #ffffff;
+  --auth-button-secondry-text: #7315e7;
 
-  --addPlace-bg:#ffffff;
-  --addPlace-Text:#000000;
-  --addPlace-inptborder:#d4b7fa;
-  --addPlace-button:#7315e7;
-  --addPlace-buttonText:#ffffff;
-  --addPlace-inputBG:#ffffff;
-  --addPlace-inputForcus:#7315e7;
-  --addPlace-selectbg:#7315e7;
-  --addPlace-selectText:#000000;
+  --addPlace-bg: #ffffff;
+  --addPlace-Text: #000000;
+  --addPlace-inptborder: #d4b7fa;
+  --addPlace-button: #7315e7;
+  --addPlace-buttonText: #ffffff;
+  --addPlace-inputBG: #ffffff;
+  --addPlace-inputForcus: #7315e7;
+  --addPlace-selectbg: #7315e7;
+  --addPlace-selectText: #000000;
 
+  --logo-primery: #005f5a;
+  --logo-secondry: #00786f;
 }
 
 .dark {
@@ -44,27 +46,28 @@
   --hart-color: #f30707;
   --red-background: #f59191;
 
-  --auth-bg:#1b1919;
-  --auth-secondry-bg:#353333;
+  --auth-bg: #1b1919;
+  --auth-secondry-bg: #353333;
   --auth-theam-text-color: #7315e7;
   --auth-inp-bg-color: #d4b7fa;
   --auth-button: #7315e7;
-  --auth-button-secondry: #D4B7FA;
-  --auth-button-text:#ffffff;
-  --auth-button-secondry-text:#7315e7;
+  --auth-button-secondry: #d4b7fa;
+  --auth-button-text: #ffffff;
+  --auth-button-secondry-text: #7315e7;
 
   /* --addPlace-bg:#101828; */
-  --addPlace-bg:#1b1919;
-  --addPlace-Text:#ffffff;
-  --addPlace-inptborder:#4a5565;
-  --addPlace-button:#155dfc;
-  --addPlace-buttonText:#ffffff;
-  --addPlace-inputBG:#1e2939;
-  --addPlace-inputForcus:#51a2ff;
-  --addPlace-selectbg:#1e2939;
-  --addPlace-selectText:#ffffff;
+  --addPlace-bg: #1b1919;
+  --addPlace-Text: #ffffff;
+  --addPlace-inptborder: #4a5565;
+  --addPlace-button: #155dfc;
+  --addPlace-buttonText: #ffffff;
+  --addPlace-inputBG: #1e2939;
+  --addPlace-inputForcus: #51a2ff;
+  --addPlace-selectbg: #1e2939;
+  --addPlace-selectText: #ffffff;
 
-
+  --logo-primery: #005f5a;
+  --logo-secondry: #00786f;
 }
 
 /* Utility Classes Using Variables */
@@ -103,14 +106,12 @@
   background-color: var(--red-background);
 }
 
-.auth-bg{
+.auth-bg {
   background-color: var(--auth-bg);
-
 }
 
-.auth-secondry-bg{
+.auth-secondry-bg {
   background-color: var(--auth-secondry-bg);
-
 }
 .auth-theam-text-color {
   color: var(--auth-theam-text-color);
@@ -124,19 +125,19 @@
   background-color: var(--auth-inp-bg-color);
 }
 
-.auth-button{
+.auth-button {
   background-color: var(--auth-button);
 }
 
-.auth-button-secondry{
+.auth-button-secondry {
   background-color: var(--auth-button-secondry);
 }
 
-.auth-button-text{
+.auth-button-text {
   color: var(--auth-button-text);
 }
 
-.auth-button-secondry-text{
+.auth-button-secondry-text {
   color: var(--auth-button-secondry-text);
 }
 
@@ -144,7 +145,7 @@
   background-color: var(--addPlace-bg);
 }
 
-.addPlace-Text{
+.addPlace-Text {
   color: var(--addPlace-Text);
 }
 
@@ -156,7 +157,7 @@
   background-color: var(--addPlace-button);
 }
 
-.addPlace-buttonText{
+.addPlace-buttonText {
   color: var(--addPlace-buttonText);
 }
 
@@ -166,15 +167,23 @@
 
 .addPlace-inputForcus {
   &:focus {
-        --tw-ring-color: var(--addPlace-inputForcus) 
-    }
+    --tw-ring-color: var(--addPlace-inputForcus);
+  }
 }
 
-.addPlace-selectbg{
+.addPlace-selectbg {
   background-color: var(--addPlace-selectbg);
-
 }
 
-.addPlace-selectText{
+.addPlace-selectText {
   color: var(--addPlace-selectText);
 }
+
+.logo-primery {
+  color: var(--logo-primery);
+}
+
+.logo-secondry {
+  color: var(--logo-secondry);
+}
+

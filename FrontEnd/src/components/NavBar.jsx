@@ -47,12 +47,12 @@ export default function NavBar() {
         </button>
 
         <div className="flex items-center space-x-3 ">
-          <FontAwesomeIcon icon={faHouseChimney} className="text-teal-700 text-4xl" />
+          <FontAwesomeIcon icon={faHouseChimney} className="logo-secondry text-4xl" />
           <div className="text-left">
-            <h1 className="text-xl font-serif font-bold text-teal-800 leading-tight">
+            <h1 className="text-xl font-serif font-bold logo-primery leading-tight">
               MORATUWA
             </h1>
-            <h2 className="text-lg font-serif font-semibold text-teal-700">
+            <h2 className="text-lg font-serif font-semibold logo-secondry">
               BORDINGS
             </h2>
           </div>
