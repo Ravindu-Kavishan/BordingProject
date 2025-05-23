@@ -26,7 +26,7 @@ const initialState = {
   showOnlyFavorites: false,
   myPlaces: [],
   darkMode: JSON.parse(localStorage.getItem("dark") ?? "false"),
-  owneremail: JSON.parse(localStorage.getItem("owneremail") ?? false),
+  owneremail: localStorage.getItem("owneremail") ?? false,
 };
 
 export default function reducer(state = initialState, action) {

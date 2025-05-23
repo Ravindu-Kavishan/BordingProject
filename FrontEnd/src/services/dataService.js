@@ -60,7 +60,7 @@ const AddPlaceDetails = async (formData) => {
         withCredentials: true,
       }
     );
-    return { success: true, data: response.data}; //response.message
+    return { success: true, data: response.data }; //response.message
   } catch (error) {
     return {
       success: false,
@@ -71,4 +71,27 @@ const AddPlaceDetails = async (formData) => {
     };
   }
 };
-export default { getAllPlaces, getPlaceDetails, getMyPlaces, AddPlaceDetails };
+
+const DeletePlace = async (formData) => {
+  try {
+    const response = await axios.delete(`${BACKEND_URL}/owners/deletePlace`, {
+      data: formData,
+      withCredentials: true,
+    });
+    return { success: true, data: response.data };
+  } catch (error) {
+    return {
+      success: false,
+      message:
+        error.response?.data?.message || error.message || "Deleting failed.",
+    };
+  }
+};
+
+export default {
+  getAllPlaces,
+  getPlaceDetails,
+  getMyPlaces,
+  AddPlaceDetails,
+  DeletePlace,
+};

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa"; // Correct icon
 import { useNavigate } from "react-router-dom";
+import dataService from "../services/dataService";
 
 export default function CardsForOwner({
   thumbnailUrl,
@@ -10,8 +11,10 @@ export default function CardsForOwner({
   price,
   gate,
   _id,
+  setErrorMsg,
+  setSuccessMsg,
+  refreshPlaces,
 }) {
-
   const navigate = useNavigate();
 
   if (_id === "addBording") {
@@ -29,6 +32,21 @@ export default function CardsForOwner({
     );
   }
 
+  async function deleteClicked() {
+    const result = await dataService.DeletePlace({
+      _id,
+    });
+
+    if (result.success) {
+      setErrorMsg("");
+      setSuccessMsg(result.data.message);
+      refreshPlaces();
+    } else {
+      setSuccessMsg("");
+      setErrorMsg(result.message);
+    }
+  }
+
   return (
     <div className="relative w-full flex flex-col gap-2 cursor-pointer">
       <div className="relative">
@@ -39,10 +57,7 @@ export default function CardsForOwner({
           onClick={() => navigate(`/OwnerPlace/${_id}`)}
         />
         <button
-          onClick={() => {
-            // Add your delete logic here
-            console.log("Delete clicked for _id:", _id);
-          }}
+          onClick={deleteClicked}
           className="absolute top-2 right-2 text-xl primary-bg rounded-full p-1 shadow-md hover:scale-110 transition"
         >
           <FaTrash className="hart-color" />
