@@ -172,9 +172,18 @@ export default function AddBordingPlace() {
 
   return (
     <div className="secondry-bg max-w-screen pt-10">
+      {successMsg && (
+        <div className="flex items-center justify-center px-4 py-2 b  sticky top-0 z-50">
+          <SuccessMSG message={successMsg} />
+        </div>
+      )}
+      {errorMsg && (
+        <div className="flex items-center justify-center px-4 py-2 b  sticky top-0 z-50">
+          <ErrorAlert message={errorMsg} />
+        </div>
+      )}
+
       <div className="max-w-2xl mx-auto p-6 addPlace-bg rounded-xl shadow-md mt-10">
-        {errorMsg && <ErrorAlert message={errorMsg} />}
-        {successMsg && <SuccessMSG message={successMsg} />}
         <h2 className="text-2xl font-bold mb-6 text-center addPlace-Text">
           Add Boarding Place
         </h2>
