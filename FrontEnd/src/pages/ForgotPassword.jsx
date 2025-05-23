@@ -5,6 +5,7 @@ import ErrorAlert from "../components/ErrorAllert";
 import SuccessMSG from "../components/SuccessMSG";
 import { useSelector } from "react-redux";
 import Button from "../components/Button";
+import authService from "../services/authService";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +24,7 @@ export default function ForgotPassword() {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const { email } = formData;
 
     if (!email) {
@@ -34,6 +35,19 @@ export default function ForgotPassword() {
     console.log("LogIn Data:", {
       email,
     });
+
+    const result = await authService.sendOTP({
+      email,
+    });
+
+    if (result.success) {
+      setSuccessMsg("OTP sent successfully!");
+      setFormData({
+        email: "",
+      });
+    } else {
+      setErrorMsg(result.message);
+    }
 
     setSuccessMsg("Requested OTP!");
     setFormData({

@@ -1,10 +1,10 @@
 import axios from "axios";
-import { BACKEND_URL } from "../utils/backendURL"; 
+import { BACKEND_URL } from "../utils/backendURL";
 
 const registerUser = async (formData) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/owners/register`, 
+      `${BACKEND_URL}/owners/register`,
       formData,
       {
         withCredentials: true,
@@ -24,23 +24,33 @@ const registerUser = async (formData) => {
 
 const loginUser = async (formData) => {
   try {
-    const response = await axios.post(
-      `${BACKEND_URL}/owners/login`, 
-      formData,
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await axios.post(`${BACKEND_URL}/owners/login`, formData, {
+      withCredentials: true,
+    });
     return { success: true, data: response.data };
   } catch (error) {
     return {
       success: false,
       message:
-        error.response?.data?.message ||
-        error.message ||
-        "Login failed.",
+        error.response?.data?.message || error.message || "Login failed.",
     };
   }
 };
 
-export default { registerUser,loginUser };
+const sendOTP = async (formData) => {
+  try {
+    const response = await axios.post(`${BACKEND_URL}/owners/createOTP`, formData, {
+      withCredentials: true,
+    });
+    localStorage.setItem("email", formData.email);
+    return { success: true, data: response.data };
+  } catch (error) {
+    return {
+      success: false,
+      message:
+        error.response?.data?.message || error.message || "Login failed.",
+    };
+  }
+};
+
+export default { registerUser, loginUser ,sendOTP};
