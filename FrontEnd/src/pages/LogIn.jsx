@@ -6,15 +6,13 @@ import SuccessMSG from "../components/SuccessMSG";
 import Button from "../components/Button";
 import authService from "../services/authService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { owner_logedin } from "../utils/Store/actionCreaters";
 
 export default function LogIn() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
@@ -46,6 +44,7 @@ export default function LogIn() {
         email: "",
         password: "",
       });
+      dispatch(owner_logedin(email));
       navigate("/MyBordings");
     } else {
       setSuccessMsg("");

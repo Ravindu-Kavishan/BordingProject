@@ -25,6 +25,7 @@ export default function NavBar() {
 
   const isFav = useSelector((state) => state.showOnlyFavorites);
   const dark = useSelector((state) => state.darkMode);
+  const owner = useSelector((state) => state.owneremail);
 
   // Sync <html> class with dark mode
   useEffect(() => {
@@ -63,7 +64,7 @@ export default function NavBar() {
       {/* Right: Desktop only */}
       <div className="hidden md:flex items-center gap-4 text-xl">
         <button
-          className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110"
+          className="p-2 transition duration-300 rounded-full secondry-bg hover:scale-110 cursor-pointer"
           onClick={() => dispatch(showOnlyFavorites())}
         >
           {isFav ? (
@@ -84,13 +85,22 @@ export default function NavBar() {
           )}
         </button>
 
-        <button
-          onClick={() => navigate("/Register")}
-          className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color"
-        >
-          <FaUserCircle className="text-xl" />
-          <span className="text-sm font-medium">Sign in</span>
-        </button>
+        {owner === false ? (
+          <button
+            onClick={() => navigate("/Register")}
+            className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color cursor-pointer"
+          >
+            <FaUserCircle className="text-xl" />
+            <span className="text-sm font-medium">Sign in</span>
+          </button>
+        ) : (
+          <div
+            className="w-10 h-10 rounded-full secondry-bg primary-text flex items-center justify-center font-bold text-sm cursor-pointer"
+            onClick={() => navigate("/MyBordings")}
+          >
+            {owner.charAt(0).toUpperCase()}
+          </div>
+        )}
       </div>
 
       {/* Mobile menu */}
@@ -127,16 +137,25 @@ export default function NavBar() {
               <span className="text-sm primary-text">Toggle Theme</span>
             </button>
 
-            <button
-              onClick={() => {
-                navigate("/Register");
-                setMenuOpen(false);
-              }}
-              className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text"
-            >
-              <FaUserCircle className="text-xl" />
-              <span className="text-sm font-medium">Sign in</span>
-            </button>
+            {owner === false ? (
+              <button
+                onClick={() => {
+                  navigate("/Register");
+                  setMenuOpen(false);
+                }}
+                className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text"
+              >
+                <FaUserCircle className="text-xl" />
+                <span className="text-sm font-medium">Sign in</span>
+              </button>
+            ) : (
+              <div
+                className="flex items-center gap-2 secondry-bg p-2 rounded-md"
+                onClick={() => navigate("/MyBordings")}
+              >
+                {owner}
+              </div>
+            )}
           </div>
         </div>
       )}

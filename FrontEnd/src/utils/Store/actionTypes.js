@@ -5,3 +5,4 @@ export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
 export const ADD_MYPLACES = "ADD_MYPLACES";
 export const FILTERD_PLACES = "FILTERD_PLACES";
 export const UPDATE_FILTER = "UPDATE_FILTER";
+export const OWNER_LOGEDIN = "OWNER_LOGEDIN";
