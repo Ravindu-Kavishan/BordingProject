@@ -16,6 +16,9 @@ import {
   showOnlyFavorites,
   toggleDarkMode,
 } from "../utils/Store/actionCreaters";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouseChimney } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,11 +45,18 @@ export default function NavBar() {
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
-          alt="YouTube Logo"
-          className="h-6 hidden md:block"
-        />
+
+        <div className="flex items-center space-x-3 ">
+          <FontAwesomeIcon icon={faHouseChimney} className="text-teal-700 text-4xl" />
+          <div className="text-left">
+            <h1 className="text-xl font-serif font-bold text-teal-800 leading-tight">
+              MORATUWA
+            </h1>
+            <h2 className="text-lg font-serif font-semibold text-teal-700">
+              BORDINGS
+            </h2>
+          </div>
+        </div>
       </div>
 
       {/* Middle: Search Bar */}
