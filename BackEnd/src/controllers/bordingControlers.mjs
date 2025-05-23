@@ -87,4 +87,22 @@ const getALLPlaces = async (req, res, next) => {
   }
 };
 
-export default { addPlace, getPlace, getMyPlaces, updatePlace, getALLPlaces };
+const deletePlace = async (req, res, next) => {
+  try {
+    const { _id } = req.body;
+    const userId = req.user.id;
+
+    const result = await Bording.deleteOne({ _id, userId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Place not found or unauthorized" });
+    }
+
+    res.status(200).json({ message: "Place Deleted" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+export default { addPlace, getPlace, getMyPlaces, updatePlace, getALLPlaces,deletePlace };

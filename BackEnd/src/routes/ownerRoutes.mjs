@@ -7,7 +7,7 @@ import jwtTokenMiddleware from "../middleware/jwtTokenMiddleware.mjs";
 import OTPMiddlewere from "../middleware/OTPMiddlewere.mjs";
 
 const { registerUser,loginUser,sendUserDetails,updateOwner,sendOTPByEmail,compareOTPByEmail,updatePassword } = userController;
-const { addPlace,getPlace,getMyPlaces,updatePlace } =bordingController
+const { addPlace,getPlace,getMyPlaces,updatePlace,deletePlace } =bordingController
 const { getUserByEmail } = userMiddlewares;
 const { createHashPassword,compareHashPassword } = hashPasswordMiddleware;
 const { generateJWTToken,authorizeWithJWT } = jwtTokenMiddleware;
@@ -26,6 +26,7 @@ router.post("/addPlace",authorizeWithJWT,addPlace);
 router.post("/getPlace",authorizeWithJWT,getPlace);
 router.get("/getMyPlaces",authorizeWithJWT,getMyPlaces);
 router.put("/updatePlace",authorizeWithJWT,updatePlace);
+router.delete("/deletePlace",authorizeWithJWT,deletePlace);
 
 export default router;
 
