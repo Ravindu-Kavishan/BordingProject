@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
@@ -40,12 +40,14 @@ export default function LogIn() {
     });
 
     if (result.success) {
+      setErrorMsg("");
       setSuccessMsg("Login successfully!");
       setFormData({
         email: "",
         password: "",
       });
     } else {
+      setSuccessMsg("");
       setErrorMsg(result.message);
     }
   };

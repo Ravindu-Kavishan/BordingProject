@@ -4,6 +4,7 @@ import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
 import SuccessMSG from "../components/SuccessMSG";
 import { useSelector } from "react-redux";
+import authService from "../services/authService";
 import Button from "../components/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +25,7 @@ export default function ChangePasword() {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const { password, confirmPassword } = formData;
 
     if (!password || !confirmPassword) {
@@ -37,9 +38,19 @@ export default function ChangePasword() {
       return;
     }
 
-    console.log("Registration Data:", {
-      password,
-    });
+    const result = await authService.resetPassword({ password });
+
+    if (result.success) {
+      setErrorMsg("");
+      setSuccessMsg(result.data.message);
+      setFormData({
+        email: "",
+        password: "",
+      });
+    } else {
+      setSuccessMsg("");
+      setErrorMsg(result.message);
+    }
 
     setSuccessMsg("Registered successfully!");
     setFormData({
