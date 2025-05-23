@@ -41,19 +41,16 @@ export default function ForgotPassword() {
     });
 
     if (result.success) {
+      setErrorMsg("");
       setSuccessMsg("OTP sent successfully!");
       setFormData({
         email: "",
       });
+      navigate("/SubmitOTP");
     } else {
+      setSuccessMsg("");
       setErrorMsg(result.message);
     }
-
-    setSuccessMsg("Requested OTP!");
-    setFormData({
-      email: "",
-    });
-    navigate("/SubmitOTP");
   };
 
   return (
