@@ -102,20 +102,18 @@ const sendOTPByEmail = async (req, res) => {
 const compareOTPByEmail = async (req, res) => {
   try {
     if (req.body.otp === req.body.user.otp) {
-      res.status(200).json({ message: "Verification successfully" });
+      res.status(200).json({ message: "Verification successful" });
     } else {
-      res.status(200).json({ message: "Verification successfully" });
+      res.status(401).json({ message: "Invalid OTP" });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed", error: error.message });
+    res.status(500).json({ message: "Failed", error: error.message });
   }
 };
 
 const updatePassword = async (req, res) => {
   try {
-    const {  email, password } = req.body;
+    const { email, password } = req.body;
 
     const user = await User.updateOne(
       { email },
@@ -135,5 +133,5 @@ export default {
   updateOwner,
   sendOTPByEmail,
   compareOTPByEmail,
-  updatePassword
+  updatePassword,
 };

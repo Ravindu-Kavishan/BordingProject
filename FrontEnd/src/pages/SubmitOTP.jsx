@@ -4,6 +4,7 @@ import InputField from "../components/InputField";
 import ErrorAlert from "../components/ErrorAllert";
 import SuccessMSG from "../components/SuccessMSG";
 import Button from "../components/Button";
+import authService from "../services/authService";
 import { useSelector } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,7 +24,7 @@ export default function SubmitOTP() {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const { OTP } = formData;
 
     if (!OTP) {
@@ -31,15 +32,17 @@ export default function SubmitOTP() {
       return;
     }
 
-    console.log("LogIn Data:", {
-      OTP,
-    });
+    const result = await authService.compareOTP({ OTP });
 
-    setSuccessMsg("Comparing OTP...");
-    setFormData({
-      OTP: "",
-    });
-    navigate("/ChangePasword");
+    if (result.success) {
+      setErrorMsg("");
+      setSuccessMsg(result.data.message);
+      setFormData({ OTP: "" });
+      navigate("/ChangePasword");
+    } else {
+      setSuccessMsg("");
+      setErrorMsg(result.message);
+    }
   };
 
   return (
