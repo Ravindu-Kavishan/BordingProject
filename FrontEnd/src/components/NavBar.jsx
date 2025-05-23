@@ -91,14 +91,6 @@ export default function NavBar() {
           <FaUserCircle className="text-xl" />
           <span className="text-sm font-medium">Sign in</span>
         </button>
-        <button
-          onClick={() => {
-            navigate("/MyBordings");
-          }}
-          className="flex items-center gap-2 secondry-bg p-2 rounded-md primary-text"
-        >
-          MyBordings
-        </button>
       </div>
 
       {/* Mobile menu */}

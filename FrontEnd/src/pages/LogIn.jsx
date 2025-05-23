@@ -46,6 +46,7 @@ export default function LogIn() {
         email: "",
         password: "",
       });
+      navigate("/MyBordings");
     } else {
       setSuccessMsg("");
       setErrorMsg(result.message);
