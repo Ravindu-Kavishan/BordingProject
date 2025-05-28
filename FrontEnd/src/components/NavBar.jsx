@@ -18,7 +18,10 @@ import {
 } from "../utils/Store/actionCreaters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
-import { filterd_availability ,filterd_places } from "../utils/Store/actionCreaters";
+import {
+  filterd_availability,
+  filterd_places,
+} from "../utils/Store/actionCreaters";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,16 +29,21 @@ export default function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [availability, setAvailability] = useState("");
-
+  const avbt = useSelector((state) => state.filter.availability);
   const isFav = useSelector((state) => state.showOnlyFavorites);
   const dark = useSelector((state) => state.darkMode);
   const owner = useSelector((state) => state.owneremail);
+
+  const [availability, setAvailability] = useState(avbt);
 
   // Sync <html> class with dark mode
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  useEffect(() => {
+    setAvailability(avbt);
+  }, [avbt]);
 
   function handleSearch() {
     dispatch(filterd_availability(availability));
@@ -73,7 +81,8 @@ export default function NavBar() {
       <div className="flex items-center flex-1 max-w-xl mx-4">
         <input
           type="number"
-          placeholder="Search Nom Of Members"
+          value={availability} // <-- bind the value here
+          placeholder="Search Num Of Members"
           className="flex-1 px-4 py-1 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none"
           onChange={(e) => setAvailability(e.target.value)}
         />
