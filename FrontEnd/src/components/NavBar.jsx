@@ -81,11 +81,12 @@ export default function NavBar() {
       <div className="flex items-center flex-1 max-w-xl mx-4">
         <input
           type="number"
-          value={availability} // <-- bind the value here
+          value={availability}
           placeholder="Search Num Of Members"
-          className="flex-1 px-4 py-1 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none"
+          className="flex-1 px-4 py-1 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [appearance:textfield]"
           onChange={(e) => setAvailability(e.target.value)}
         />
+
         <button
           className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0 cursor-pointer"
           onClick={handleSearch}
