@@ -62,8 +62,8 @@ export default function NavBar() {
       {/* Middle: Search Bar */}
       <div className="flex items-center flex-1 max-w-xl mx-4">
         <input
-          type="text"
-          placeholder="Search"
+          type="number"
+          placeholder="Search Nom Of Members"
           className="flex-1 px-4 py-1 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none"
         />
         <button className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0">
