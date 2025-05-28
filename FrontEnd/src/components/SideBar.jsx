@@ -81,7 +81,11 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { filterd_places, update_filter } from "../utils/Store/actionCreaters";
+import {
+  filterd_places,
+  update_filter,
+  reset_filter,
+} from "../utils/Store/actionCreaters";
 
 export default function SideBar() {
   const dispatch = useDispatch();
@@ -103,6 +107,7 @@ export default function SideBar() {
   const handleSelect = (item) => {
     if (item.category === "all") {
       const resetFilters = { type: "", forWhome: "", gate: "" };
+      dispatch(reset_filter());
       setSelectedByCategory(resetFilters);
       dispatch(update_filter(resetFilters));
       navigate("/");

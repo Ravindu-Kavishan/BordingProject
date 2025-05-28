@@ -8,6 +8,8 @@ import {
   FILTERD_PLACES,
   UPDATE_FILTER,
   OWNER_LOGEDIN,
+  FILTERD_AVAILABILITY,
+  RESET_FILTER
 } from "./actionTypes";
 
 let favoritePlaces = [];
@@ -21,7 +23,7 @@ try {
 const initialState = {
   places: [],
   filterdPlaces: [],
-  filter: { type: "", forWhome: "", gate: "" },
+  filter: { type: "", forWhome: "", gate: "", availability: "" },
   favoritePlaces,
   showOnlyFavorites: false,
   myPlaces: [],
@@ -69,7 +71,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case FILTERD_PLACES: {
-      const { type, forWhome, gate } = state.filter;
+      const { type, forWhome, gate, availability } = state.filter;
 
       const filtered = state.places.filter((place) => {
         const matchesType =
@@ -79,8 +81,14 @@ export default function reducer(state = initialState, action) {
           place.forWhome === forWhome ||
           place.forWhome === "Both Ok";
         const matchesGate = !gate || place.gate === gate;
+        const matchesAvailability =
+          !availability ||
+          place.availability === Number(availability) ||
+          isNaN(Number(availability));
 
-        return matchesType && matchesForWhome && matchesGate;
+        return (
+          matchesType && matchesForWhome && matchesGate && matchesAvailability
+        );
       });
 
       return {
@@ -91,7 +99,23 @@ export default function reducer(state = initialState, action) {
     case UPDATE_FILTER: {
       return {
         ...state,
-        filter: { ...action.filters },
+        filter: { ...state.filter,
+      ...action.filters },
+      };
+    }
+    case FILTERD_AVAILABILITY: {
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          availability: action.availability,
+        },
+      };
+    }
+    case RESET_FILTER: {
+      return {
+        ...state,
+        filter: { type: "", forWhome: "", gate: "", availability: "" },
       };
     }
     case OWNER_LOGEDIN: {

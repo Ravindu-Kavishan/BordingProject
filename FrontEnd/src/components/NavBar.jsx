@@ -16,15 +16,17 @@ import {
   showOnlyFavorites,
   toggleDarkMode,
 } from "../utils/Store/actionCreaters";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouseChimney } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
+import { filterd_availability ,filterd_places } from "../utils/Store/actionCreaters";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [availability, setAvailability] = useState("");
 
   const isFav = useSelector((state) => state.showOnlyFavorites);
   const dark = useSelector((state) => state.darkMode);
@@ -34,6 +36,11 @@ export default function NavBar() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  function handleSearch() {
+    dispatch(filterd_availability(availability));
+    dispatch(filterd_places());
+  }
 
   return (
     <div className="flex items-center justify-between px-4 py-2 primary-bg shadow-md sticky top-0 z-50">
@@ -47,7 +54,10 @@ export default function NavBar() {
         </button>
 
         <div className="flex items-center space-x-3 ">
-          <FontAwesomeIcon icon={faHouseChimney} className="logo-secondry text-4xl" />
+          <FontAwesomeIcon
+            icon={faHouseChimney}
+            className="logo-secondry text-4xl"
+          />
           <div className="text-left">
             <h1 className="text-xl font-serif font-bold logo-primery leading-tight">
               MORATUWA
@@ -65,8 +75,12 @@ export default function NavBar() {
           type="number"
           placeholder="Search Nom Of Members"
           className="flex-1 px-4 py-1 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none"
+          onChange={(e) => setAvailability(e.target.value)}
         />
-        <button className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0">
+        <button
+          className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0 cursor-pointer"
+          onClick={handleSearch}
+        >
           <FaSearch className="m-1 primary-text" />
         </button>
       </div>
