@@ -55,7 +55,7 @@ export default function DynamicFormField({ field, value, onChange }) {
           onChange={onChange}
           min={type === "number" ? 0 : undefined}
           required={required}
-          className="addPlace-Text w-full border addPlace-inptborder rounded px-3 py-2 focus:outline-none focus:ring-2 addPlace-inputForcus"
+          className="addPlace-Text w-full border addPlace-inptborder rounded px-3 py-2 focus:outline-none focus:ring-2 addPlace-inputForcus [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [appearance:textfield]"
         />
       )}
     </div>

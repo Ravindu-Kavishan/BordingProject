@@ -71,7 +71,7 @@ const updatePlace = async (req, res, next) => {
 const getALLPlaces = async (req, res, next) => {
   try {
     const bording = await Bording.find(
-      {},
+      {paid:true},
       {
         type: 1,
         availability: 1,
