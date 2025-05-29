@@ -6,14 +6,20 @@ import dataService from "../services/dataService";
 import addProjectIcon from "../assets/addProjectIcon.svg";
 import SuccessMSG from "../components/SuccessMSG";
 import ErrorAlert from "../components/ErrorAllert";
+import { PAMENT_PERSENTAGE } from "../utils/pamentPresentage";
 
 export default function MyBordings() {
   const dispatch = useDispatch();
   const MyCards = useSelector((state) => state.myPlaces);
-
   const [error, setError] = React.useState(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const dark = useSelector((state) => state.darkMode);
+  const unpaidPlaces = useSelector((state) => state.unpaidplaces);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   const fetchPlaces = async () => {
     const result = await dataService.getMyPlaces();
@@ -28,12 +34,31 @@ export default function MyBordings() {
     fetchPlaces();
   }, [dispatch]);
 
-  const addBording = {
-    thumbnailUrl: addProjectIcon,
-    _id: "addBording",
-  };
+  const paymentAmount = unpaidPlaces.reduce(
+    (total, { price }) => total + price * PAMENT_PERSENTAGE,
+    0
+  );
 
-  const displayCards = [...MyCards, addBording];
+  const [displayCards, setDisplayCards] = useState([]);
+  useEffect(() => {
+    const addBording = {
+      thumbnailUrl: addProjectIcon,
+      _id: "addBording",
+    };
+
+    const payDiv = {
+      thumbnailUrl: addProjectIcon,
+      _id: "payNow",
+      paymentAmount,
+    };
+
+    if (paymentAmount === 0) {
+      setDisplayCards([...MyCards, addBording]);
+    } else {
+      setDisplayCards([...MyCards, addBording, payDiv]);
+    }
+  }, [MyCards, paymentAmount]);
+  // const displayCards = [...MyCards, addBording];
 
   return (
     <div className="primary-bg max-w-screen pt-10">

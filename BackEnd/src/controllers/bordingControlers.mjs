@@ -30,7 +30,8 @@ const getMyPlaces = async (req, res, next) => {
         forWhome: 1,
         price: 1,
         thumbnailUrl: 1,
-        gate:1,
+        gate: 1,
+        paid: 1,
       }
     );
 
@@ -71,14 +72,14 @@ const updatePlace = async (req, res, next) => {
 const getALLPlaces = async (req, res, next) => {
   try {
     const bording = await Bording.find(
-      {paid:true},
+      { paid: true },
       {
         type: 1,
         availability: 1,
         forWhome: 1,
         price: 1,
         thumbnailUrl: 1,
-        gate:1,
+        gate: 1,
       }
     );
     res.status(200).json(bording);
@@ -95,7 +96,9 @@ const deletePlace = async (req, res, next) => {
     const result = await Bording.deleteOne({ _id, userId });
 
     if (result.deletedCount === 0) {
-      return res.status(404).json({ message: "Place not found or unauthorized" });
+      return res
+        .status(404)
+        .json({ message: "Place not found or unauthorized" });
     }
 
     res.status(200).json({ message: "Place Deleted" });
@@ -104,5 +107,11 @@ const deletePlace = async (req, res, next) => {
   }
 };
 
-
-export default { addPlace, getPlace, getMyPlaces, updatePlace, getALLPlaces,deletePlace };
+export default {
+  addPlace,
+  getPlace,
+  getMyPlaces,
+  updatePlace,
+  getALLPlaces,
+  deletePlace,
+};

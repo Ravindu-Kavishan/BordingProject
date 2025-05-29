@@ -9,7 +9,7 @@ import {
   UPDATE_FILTER,
   OWNER_LOGEDIN,
   FILTERD_AVAILABILITY,
-  RESET_FILTER
+  RESET_FILTER,
 } from "./actionTypes";
 
 let favoritePlaces = [];
@@ -27,6 +27,7 @@ const initialState = {
   favoritePlaces,
   showOnlyFavorites: false,
   myPlaces: [],
+  unpaidplaces: [],
   darkMode: JSON.parse(localStorage.getItem("dark") ?? "false"),
   owneremail: localStorage.getItem("owneremail") ?? false,
 };
@@ -61,8 +62,16 @@ export default function reducer(state = initialState, action) {
     case SHOW_ONLY_FAVORITES:
       return { ...state, showOnlyFavorites: !state.showOnlyFavorites };
 
-    case ADD_MYPLACES:
-      return { ...state, myPlaces: [...action.myPlaces] };
+    case ADD_MYPLACES: {
+      const unpaid_places = action.myPlaces.filter(
+        ({ paid }) => paid === false
+      );
+      return {
+        ...state,
+        myPlaces: [...action.myPlaces],
+        unpaidplaces: [...unpaid_places],
+      };
+    }
 
     case TOGGLE_DARK_MODE: {
       const next = !state.darkMode;
@@ -99,8 +108,7 @@ export default function reducer(state = initialState, action) {
     case UPDATE_FILTER: {
       return {
         ...state,
-        filter: { ...state.filter,
-      ...action.filters },
+        filter: { ...state.filter, ...action.filters },
       };
     }
     case FILTERD_AVAILABILITY: {
