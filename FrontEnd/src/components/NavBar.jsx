@@ -22,6 +22,8 @@ import {
   filterd_availability,
   filterd_places,
 } from "../utils/Store/actionCreaters";
+import dataService from "../services/dataService";
+import { owner_logedout } from "../utils/Store/actionCreaters";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,6 +46,18 @@ export default function NavBar() {
   useEffect(() => {
     setAvailability(avbt);
   }, [avbt]);
+
+  useEffect(() => {
+    const checkAuthorization = async () => {
+      const result = await dataService.checkAuth();
+      console.log(result);
+      if (!result.data.valid) {
+        dispatch(owner_logedout());
+      }
+    };
+
+    checkAuthorization();
+  }, []);
 
   function handleSearch() {
     dispatch(filterd_availability(availability));

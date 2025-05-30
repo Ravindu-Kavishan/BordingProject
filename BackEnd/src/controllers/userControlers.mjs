@@ -1,5 +1,6 @@
 import User from "../models/userModel.mjs";
 import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
 
 const registerUser = async (req, res, next) => {
   try {
@@ -126,6 +127,22 @@ const updatePassword = async (req, res) => {
   }
 };
 
+const cheackUser = async (req, res) => {
+  let token;
+
+  try {
+    token = req.cookies.token;
+
+    if (!token) {
+      return res.status(200).json({ valid: false });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    res.status(200).json({ valid: true, user: decoded });
+  } catch (error) {
+    res.status(401).json({ message: "Not authorized, token failed" });
+  }
+};
+
 export default {
   registerUser,
   loginUser,
@@ -134,4 +151,5 @@ export default {
   sendOTPByEmail,
   compareOTPByEmail,
   updatePassword,
+  cheackUser,
 };

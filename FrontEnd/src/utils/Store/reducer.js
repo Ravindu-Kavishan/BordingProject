@@ -10,6 +10,7 @@ import {
   OWNER_LOGEDIN,
   FILTERD_AVAILABILITY,
   RESET_FILTER,
+  OWNER_LOGEDOUT,
 } from "./actionTypes";
 
 let favoritePlaces = [];
@@ -127,9 +128,13 @@ export default function reducer(state = initialState, action) {
       };
     }
     case OWNER_LOGEDIN: {
-      console.log(action.email);
       localStorage.setItem("owneremail", action.email);
       return { ...state, owneremail: action.email };
+    }
+
+    case OWNER_LOGEDOUT: {
+      localStorage.removeItem("owneremail");
+      return { ...state, owneremail: false };
     }
 
     default:

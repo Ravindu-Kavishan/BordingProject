@@ -9,6 +9,7 @@ import ChangePasword from "./pages/ChangePasword";
 import MyBordings from "./pages/MyBordings";
 import AddBordingPlace from "./pages/AddBordingPlace";
 import PlaceDetails from "./pages/PlaceDetails";
+
 function App() {
   return (
     <Router>

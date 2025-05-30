@@ -12,6 +12,7 @@ const generateJWTToken = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true, // Cannot access via JavaScript → protection against XSS attacks
       secure: process.env.NODE_ENV === "production", // Set true if in production (HTTPS only)
+      maxAge: 60 * 60 * 1000,
     });
     res.status(201).json({
       _id: user._id,
@@ -35,7 +36,6 @@ const authorizeWithJWT = async (req, res, next) => {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decoded.id).select("-password");
-
 
     next();
   } catch (error) {

@@ -9,6 +9,7 @@ import {
   OWNER_LOGEDIN,
   FILTERD_AVAILABILITY,
   RESET_FILTER,
+  OWNER_LOGEDOUT,
 } from "./actionTypes";
 
 export const addPlaces = (newPlaces) => ({ type: ADD_PLACES, newPlaces });
@@ -19,5 +20,6 @@ export const addmyplaces = (myPlaces) => ({ type: ADD_MYPLACES, myPlaces });
 export const filterd_places = () => ({ type: FILTERD_PLACES });
 export const update_filter = (filters) => ({ type: UPDATE_FILTER, filters });
 export const owner_logedin = (email) => ({ type: OWNER_LOGEDIN, email });
+export const owner_logedout = () => ({ type: OWNER_LOGEDOUT });
 export const filterd_availability = (availability) => ({ type: FILTERD_AVAILABILITY, availability });
 export const reset_filter = () => ({ type: RESET_FILTER});
