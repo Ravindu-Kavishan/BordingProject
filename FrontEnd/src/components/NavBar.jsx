@@ -50,7 +50,6 @@ export default function NavBar() {
   useEffect(() => {
     const checkAuthorization = async () => {
       const result = await dataService.checkAuth();
-      console.log(result);
       if (!result.data.valid) {
         dispatch(owner_logedout());
       }
