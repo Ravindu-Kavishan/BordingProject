@@ -146,7 +146,9 @@ export default function SideBar() {
                   {item.label}
                 </span>
               </li>
-              {index % 2 === 0 && <hr className="mx-4 border-gray-300" />}
+              {index % 2 === 0 && (
+                <hr className="mx-4 border-gray-300 " />
+              )}
             </React.Fragment>
           );
         })}

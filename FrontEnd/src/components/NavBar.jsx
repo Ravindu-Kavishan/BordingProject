@@ -24,6 +24,7 @@ import {
 } from "../utils/Store/actionCreaters";
 import dataService from "../services/dataService";
 import { owner_logedout } from "../utils/Store/actionCreaters";
+import SideBar from "./SideBar";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,7 +68,6 @@ export default function NavBar() {
     <div className="flex items-center justify-between px-4 py-2 primary-bg shadow-md sticky top-0 z-50">
       {/* Left: Logo + Hamburger */}
       <div className="flex items-center gap-4">
-
         <div className="flex items-center space-x-3">
           <FontAwesomeIcon
             icon={faHouseChimney}
@@ -85,25 +85,7 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Middle: Search Bar */}
-      {/* <div className="flex items-center flex-1 max-w-xl mx-4">
-        <input
-          type="number"
-          value={availability}
-          placeholder="Search Num Of Members"
-          className="flex-1 px-4 py-1 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [appearance:textfield]"
-          onChange={(e) => setAvailability(e.target.value)}
-        />
-
-        <button
-          className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0 cursor-pointer"
-          onClick={handleSearch}
-        >
-          <FaSearch className="m-1 primary-text" />
-        </button>
-      </div> */}
-
-      <div className="flex items-center w-full max-w-xl mx-4">
+      <div className="flex items-center w-full max-w-xl mx-4 justify-center">
         <input
           type="number"
           value={availability}
@@ -125,11 +107,11 @@ export default function NavBar() {
       </div>
 
       <button
-          className="md:hidden text-2xl icon-color cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
+        className="md:hidden text-2xl icon-color cursor-pointer"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </button>
 
       {/* Right: Desktop only */}
       <div className="hidden md:flex items-center gap-4 text-xl">
@@ -226,6 +208,8 @@ export default function NavBar() {
                 {owner}
               </div>
             )}
+            <hr className="border-gray-300 md:hidden display w-full items-center" />
+            <SideBar />
           </div>
         </div>
       )}
