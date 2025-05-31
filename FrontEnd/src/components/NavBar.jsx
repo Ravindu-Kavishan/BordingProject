@@ -202,7 +202,7 @@ export default function NavBar() {
               </button>
             ) : (
               <div
-                className="flex items-center gap-2 secondry-bg p-2 rounded-md"
+                className="flex items-center gap-2 secondry-bg p-2 rounded-md text-sm primary-text"
                 onClick={() => navigate("/MyBordings")}
               >
                 {owner}

@@ -103,7 +103,7 @@ const BordingSchema = new mongoose.Schema({
   },
   paid: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
