@@ -12,6 +12,12 @@
   --dark-gray:#333333;
   --red:#f30707;
   --light-red:#ffe2e2;
+  --vilet:#7315e7;
+  --light-vilet:#d4b7fa;
+
+  --blue-green:#005f5a;
+  --light-blue-green:#00786f;
+  --very-light-blue-green:#b6f9f4;
 
   --primary-bg: var(--white);
   --secondry-bg: var(--gray);
@@ -22,14 +28,17 @@
   --hart-color: var(--red);
   --red-background: var(--light-red);
 
+  --logo-primery: var(--blue-green);
+  --logo-secondry: var(--light-blue-green);
+
   --auth-bg: var(--gray);
   --auth-secondry-bg: var(--white);
-  --auth-theam-text-color: #7315e7;
-  --auth-inp-bg-color: #d4b7fa;
-  --auth-button: #7315e7;
-  --auth-button-secondry: #d4b7fa;
-  --auth-button-text: #ffffff;
-  --auth-button-secondry-text: #7315e7;
+  --auth-theam-text-color: var(--blue-green);
+  --auth-inp-bg-color: var(--very-light-blue-green);
+  --auth-button: var(--blue-green);
+  --auth-button-secondry: var(--very-light-blue-green);
+  --auth-button-text: var(--white);
+  --auth-button-secondry-text: var(--blue-green);
 
   --addPlace-bg: #ffffff;
   --addPlace-Text: #000000;
@@ -41,11 +50,14 @@
   --addPlace-selectbg: #7315e7;
   --addPlace-selectText: #000000;
 
-  --logo-primery: #005f5a;
-  --logo-secondry: #00786f;
 }
 
 .dark {
+  --blue-green:#005f5a;
+  --light-blue-green:#00786f;
+  --very-light-blue-green:#b6f9f4;
+
+
   --primary-bg: #1b1919;
   --secondry-bg: #353333;
   --primary-text: #ffffff;
@@ -55,14 +67,17 @@
   --hart-color: #f30707;
   --red-background: #f59191;
 
+  --logo-primery: #005f5a;
+  --logo-secondry: #00786f;
+
   --auth-bg: #1b1919;
   --auth-secondry-bg: #353333;
-  --auth-theam-text-color: #7315e7;
-  --auth-inp-bg-color: #d4b7fa;
-  --auth-button: #7315e7;
-  --auth-button-secondry: #d4b7fa;
+  --auth-theam-text-color: var(--light-blue-green);
+  --auth-inp-bg-color: var(--very-light-blue-green);
+  --auth-button: var(--blue-green);
+  --auth-button-secondry: var(--very-light-blue-green);
   --auth-button-text: #ffffff;
-  --auth-button-secondry-text: #7315e7;
+  --auth-button-secondry-text: var(--blue-green);
 
   /* --addPlace-bg:#101828; */
   --addPlace-bg: #1b1919;
@@ -75,8 +90,7 @@
   --addPlace-selectbg: #1e2939;
   --addPlace-selectText: #ffffff;
 
-  --logo-primery: #005f5a;
-  --logo-secondry: #00786f;
+  
 }
 
 /* Utility Classes Using Variables */

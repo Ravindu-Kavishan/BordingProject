@@ -143,7 +143,7 @@ export default function NavBar() {
             className="flex items-center gap-2 px-4 py-2 custom-border primary-text secondry-bg rounded-full hover-color cursor-pointer"
           >
             <FaUserCircle className="text-xl" />
-            <span className="text-sm font-medium">Sign in</span>
+            <span className="text-sm font-medium">SignIn</span>
           </button>
         ) : (
           <div
@@ -167,9 +167,9 @@ export default function NavBar() {
               }}
             >
               {isFav ? (
-                <FaHeart className="icon-color" />
+                <FaHeart className="hart-color" />
               ) : (
-                <FaRegHeart className="icon-color" />
+                <FaRegHeart className="primary-text" />
               )}
               <span className="text-sm primary-text">Favorite Places</span>
             </button>

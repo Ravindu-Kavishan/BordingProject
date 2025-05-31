@@ -61,7 +61,8 @@ export default function ChangePasword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center auth-bg">
+    // <div className="min-h-screen flex items-center justify-center auth-bg">
+    <div className="min-h-screen flex items-start md:items-center justify-center auth-bg pt-10 md:-mt-10">
       <div className="w-full max-w-md p-6 rounded-2xl shadow-2xl  auth-secondry-bg">
         <h2 className="text-center text-2xl font-extrabold mb-6 auth-theam-text-color">
           Reset Pasword
