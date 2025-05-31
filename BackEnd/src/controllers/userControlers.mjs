@@ -132,7 +132,6 @@ const cheackUser = async (req, res) => {
 
   try {
     token = req.cookies.token;
-
     if (!token) {
       return res.status(200).json({ valid: false });
     }

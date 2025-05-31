@@ -13,7 +13,7 @@ const uploadImage = (req, res) => {
   }
 
   const filename = req.file.filename;
-  const imageUrl = `http://localhost:${PORT}/uploads/${filename}`;
+  const imageUrl = `http://10.10.7.165:${PORT}/uploads/${filename}`;
   res.status(200).json({ imageUrl });
 };
 
@@ -23,7 +23,7 @@ const uploadImages = (req, res) => {
   }
 
   const imageUrls = req.files.map(file => {
-    return `http://localhost:${PORT}/uploads/${file.filename}`;
+    return `http://10.10.7.165:${PORT}/uploads/${file.filename}`;
   });
 
   res.status(200).json({ imageUrls });
