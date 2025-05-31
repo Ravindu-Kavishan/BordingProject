@@ -87,7 +87,7 @@ export default function PlaceDetails() {
         {/* Info Sections */}
         <div className="grid md:grid-cols-2 gap-6">
           {/* Place Info */}
-          <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+          {/* <div className="secondry-bg p-6 rounded-2xl shadow-xl">
             <h2 className="text-2xl font-semibold mb-4">Place Information</h2>
             <div className="space-y-3 text-base">
               <div>
@@ -116,23 +116,70 @@ export default function PlaceDetails() {
                 </a>
               </div>
             </div>
+          </div> */}
+
+          <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+            <h2 className="text-2xl font-semibold mb-6 text-center">
+              Place Information
+            </h2>
+
+            <div className="space-y-3 text-base r">
+              <div className="flex justify-between">
+                <span className="font-semibold">Type:</span>
+                <span>{place.type}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-semibold">Available:</span>
+                <span>{place.availability} people</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-semibold">Suitable For:</span>
+                <span>{place.forWhome}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-semibold">Street:</span>
+                <span>{place.street}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-semibold">Gate:</span>
+                <span>{place.gate}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-semibold">Google Map:</span>
+                <a
+                  href={place.Location_Link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-blue-500"
+                >
+                  View Location
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Owner Info */}
           <div className="secondry-bg p-6 rounded-2xl shadow-xl">
-            <h2 className="text-2xl font-semibold mb-4">Owner Contact</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-center">
+              Owner Contact
+            </h2>
+
             <div className="space-y-3 text-base">
-              <div>
-                <strong>Name:</strong> {owner.name}
+              <div className="flex justify-between">
+                <span className="font-semibold">Name:</span>
+                <span>{owner.name}</span>
               </div>
-              <div>
-                <strong>Phone:</strong> {owner.contactNumber}
+              <div className="flex justify-between">
+                <span className="font-semibold">Phone:</span>
+                <span>{owner.contactNumber}</span>
               </div>
-              <div>
-                <strong>WhatsApp:</strong> {owner.whatsappNumber}
+              <div className="flex justify-between">
+                <span className="font-semibold">WhatsApp:</span>
+                <span>{owner.whatsappNumber}</span>
               </div>
-              <div>
-                <strong>Email:</strong> {owner.email}
+              <div className="flex justify-between">
+                <span className="font-semibold">Email:</span>
+                <span>{owner.email}</span>
               </div>
             </div>
           </div>
@@ -140,63 +187,81 @@ export default function PlaceDetails() {
 
         {/* Features */}
         <div className="secondry-bg p-6 rounded-2xl shadow-xl">
-          <h2 className="text-2xl font-semibold mb-4">Features</h2>
-          <div className="grid sm:grid-cols-2 gap-4 text-base">
-            <div>
-              <strong>Double Beds:</strong> {place.doubleBeds}
+          <h2 className="text-2xl font-semibold mb-6 text-center">Features</h2>
+          <div className="grid sm:grid-cols-2 gap-x-40 gap-y-6 text-base">
+            <div className="flex justify-between">
+              <span className="font-semibold">Double Beds:</span>
+              <span>{place.doubleBeds}</span>
             </div>
-            <div>
-              <strong>Single Beds:</strong> {place.singleBeds}
+            <div className="flex justify-between">
+              <span className="font-semibold">Single Beds:</span>
+              <span>{place.singleBeds}</span>
             </div>
-            <div>
-              <strong>Chairs:</strong> {place.chairs}
+            <div className="flex justify-between">
+              <span className="font-semibold">Chairs:</span>
+              <span>{place.chairs}</span>
             </div>
-            <div>
-              <strong>Tables:</strong> {place.tables}
+            <div className="flex justify-between">
+              <span className="font-semibold">Tables:</span>
+              <span>{place.tables}</span>
             </div>
-            <div>
-              <strong>Cloth Racks:</strong> {place.clothRacks}
+            <div className="flex justify-between">
+              <span className="font-semibold">Cloth Racks:</span>
+              <span>{place.clothRacks}</span>
             </div>
-            <div>
-              <strong>Bathrooms:</strong> {place.bathrooms}
+            <div className="flex justify-between">
+              <span className="font-semibold">Bathrooms:</span>
+              <span>{place.bathrooms}</span>
             </div>
-            <div>
-              <strong>Showers:</strong> {place.showers}
+            <div className="flex justify-between">
+              <span className="font-semibold">Showers:</span>
+              <span>{place.showers}</span>
             </div>
-            <div>
-              <strong>Toilets:</strong> {place.toilets}
+            <div className="flex justify-between">
+              <span className="font-semibold">Toilets:</span>
+              <span>{place.toilets}</span>
             </div>
-            <div>
-              <strong>Commodes:</strong> {place.commodes}
+            <div className="flex justify-between">
+              <span className="font-semibold">Commodes:</span>
+              <span>{place.commodes}</span>
             </div>
-            <div>
-              <strong>Dedicated For:</strong>{" "}
-              {place.bathrooms_are_dedicated_for}
-            </div>
-            <div>
-              <strong>Bathroom Description:</strong>{" "}
-              {place.descreption_about_bathrooms}
-            </div>
-            <div>
-              <strong>Special Features:</strong> {place.special_features}
+            <div className="flex justify-between">
+              <span className="font-semibold">Dedicated For:</span>
+              <span>{place.bathrooms_are_dedicated_for}</span>
             </div>
           </div>
         </div>
 
         {/* Pricing */}
         <div className="secondry-bg p-6 rounded-2xl shadow-xl">
-          <h2 className="text-2xl font-semibold mb-4">Pricing & Utilities</h2>
-          <div className="grid sm:grid-cols-3 gap-4 text-base">
-            <div>
-              <strong>Monthly Rent:</strong> Rs. {place.price}
+          <h2 className="text-2xl font-semibold mb-4 text-center">
+            Pricing & Utilities
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-x-12 gap-y-6 text-base">
+            <div className="flex justify-between">
+              <span className="font-semibold">Monthly Rent:</span>
+              <span>Rs. {place.price}</span>
             </div>
-            <div>
-              <strong>Light Bill:</strong> Rs. {place.light_bill}
+            <div className="flex justify-between">
+              <span className="font-semibold">Light Bill:</span>
+              <span>Rs. {place.light_bill}</span>
             </div>
-            <div>
-              <strong>Water Bill:</strong> Rs. {place.water_bill}
+            <div className="flex justify-between">
+              <span className="font-semibold">Water Bill:</span>
+              <span>Rs. {place.water_bill}</span>
             </div>
           </div>
+        </div>
+
+        <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+          <h2 className="text-2xl font-semibold mb-4">Special Features</h2>
+          <p className="text-base">{place.special_features}</p>
+        </div>
+
+
+        <div className="secondry-bg p-6 rounded-2xl shadow-xl">
+          <h2 className="text-2xl font-semibold mb-4">Bathroom Description</h2>
+          <p className="text-base"> {place.descreption_about_bathrooms}</p>
         </div>
 
         {/* Description */}
