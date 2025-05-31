@@ -20,7 +20,7 @@ const __dirname = path.dirname(__filename);
 // Middleware
 app.use(
   cors({
-    origin: ["https://eloquent-dodol-8ceb76.netlify.app/MyBordings"],
+    origin: true,
     credentials: true,
   })
 );
