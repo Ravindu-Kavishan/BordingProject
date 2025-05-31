@@ -3,18 +3,27 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --primary-bg: #ffffff;
-  --secondry-bg: #b9b7b7;
-  --primary-text: #000000;
-  --custom-border: #d1d1d1;
-  --icon-color: #333333;
-  --hover-color: #b9b7b7;
-  --hart-color: #f30707;
-  --red-background: #ffe2e2;
 
-  --auth-bg: #b9b7b7;
-  --auth-secondry-bg: #ffffff;
+:root {
+  --black: #000000;
+  --white:#ffffff;
+  --gray:#b9b7b7;
+  --light-gray:#d1d1d1;
+  --dark-gray:#333333;
+  --red:#f30707;
+  --light-red:#ffe2e2;
+
+  --primary-bg: var(--white);
+  --secondry-bg: var(--gray);
+  --primary-text: var(--black);
+  --custom-border: var(--light-gray);
+  --icon-color: var(--dark-gray);
+  --hover-color: var(--gray);
+  --hart-color: var(--red);
+  --red-background: var(--light-red);
+
+  --auth-bg: var(--gray);
+  --auth-secondry-bg: var(--white);
   --auth-theam-text-color: #7315e7;
   --auth-inp-bg-color: #d4b7fa;
   --auth-button: #7315e7;
@@ -186,4 +195,3 @@
 .logo-secondry {
   color: var(--logo-secondry);
 }
-

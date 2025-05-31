@@ -67,19 +67,14 @@ export default function NavBar() {
     <div className="flex items-center justify-between px-4 py-2 primary-bg shadow-md sticky top-0 z-50">
       {/* Left: Logo + Hamburger */}
       <div className="flex items-center gap-4">
-        <button
-          className="md:hidden text-2xl icon-color cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
 
-        <div className="flex items-center space-x-3 ">
+        <div className="flex items-center space-x-3">
           <FontAwesomeIcon
             icon={faHouseChimney}
             className="logo-secondry text-4xl"
           />
-          <div className="text-left">
+          {/* This text block will be hidden on small screens and shown on medium (md) and up */}
+          <div className="text-left hidden md:block">
             <h1 className="text-xl font-serif font-bold logo-primery leading-tight">
               MORATUWA
             </h1>
@@ -91,7 +86,7 @@ export default function NavBar() {
       </div>
 
       {/* Middle: Search Bar */}
-      <div className="flex items-center flex-1 max-w-xl mx-4">
+      {/* <div className="flex items-center flex-1 max-w-xl mx-4">
         <input
           type="number"
           value={availability}
@@ -106,7 +101,35 @@ export default function NavBar() {
         >
           <FaSearch className="m-1 primary-text" />
         </button>
+      </div> */}
+
+      <div className="flex items-center w-full max-w-xl mx-4">
+        <input
+          type="number"
+          value={availability}
+          placeholder="Search Num Of Members"
+          className="w-40 sm:w-60 md:w-full px-4 py-1 h-auto min-h-0 rounded-l-full secondry-bg primary-text border border-r-0 custom-border placeholder-primary-text focus:outline-none 
+      [&::-webkit-inner-spin-button]:appearance-none 
+      [&::-webkit-outer-spin-button]:appearance-none 
+      [&::-webkit-inner-spin-button]:m-0 
+      [appearance:textfield]"
+          onChange={(e) => setAvailability(e.target.value)}
+        />
+
+        <button
+          className="px-4 py-1 secondry-bg rounded-r-full custom-border border-l-0 cursor-pointer"
+          onClick={handleSearch}
+        >
+          <FaSearch className="m-1 primary-text" />
+        </button>
       </div>
+
+      <button
+          className="md:hidden text-2xl icon-color cursor-pointer"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
 
       {/* Right: Desktop only */}
       <div className="hidden md:flex items-center gap-4 text-xl">
