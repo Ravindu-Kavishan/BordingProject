@@ -41,5 +41,5 @@ app.use("/users", userRoutes);
 app.use("/uploadImgs", uploardImgRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on https://moratuwaboardings-gdgqb5ghf5f0bdff.centralindia-01.azurewebsites.net`);
 });
