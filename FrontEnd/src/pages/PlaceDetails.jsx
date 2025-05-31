@@ -87,36 +87,6 @@ export default function PlaceDetails() {
         {/* Info Sections */}
         <div className="grid md:grid-cols-2 gap-6">
           {/* Place Info */}
-          {/* <div className="secondry-bg p-6 rounded-2xl shadow-xl">
-            <h2 className="text-2xl font-semibold mb-4">Place Information</h2>
-            <div className="space-y-3 text-base">
-              <div>
-                <strong>Type:</strong> {place.type}
-              </div>
-              <div>
-                <strong>Available:</strong> {place.availability} people
-              </div>
-              <div>
-                <strong>Suitable For:</strong> {place.forWhome}
-              </div>
-              <div>
-                <strong>Street:</strong> {place.street}
-              </div>
-              <div>
-                <strong>Gate:</strong> {place.gate}
-              </div>
-              <div>
-                <strong>Google Map:</strong>{" "}
-                <a
-                  href={place.Location_Link}
-                  target="_blank"
-                  className="text-blue-600 underline"
-                >
-                  View Location
-                </a>
-              </div>
-            </div>
-          </div> */}
 
           <div className="secondry-bg p-6 rounded-2xl shadow-xl">
             <h2 className="text-2xl font-semibold mb-6 text-center">
