@@ -12,7 +12,7 @@ const generateJWTToken = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true, // Cannot access via JavaScript → protection against XSS attacks
       secure: false, // Set true if in production (HTTPS only)
-      sameSite: "lax",
+      sameSite: "None",
       maxAge: 60 * 60 * 1000,
     });
     res.status(201).json({
