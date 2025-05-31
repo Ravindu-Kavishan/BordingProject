@@ -11,7 +11,7 @@ const generateJWTToken = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true, // Cannot access via JavaScript → protection against XSS attacks
-      secure: false, // Set true if in production (HTTPS only)
+      secure: true, // Set true if in production (HTTPS only)
       sameSite: "lax",
       maxAge: 60 * 60 * 1000,
     });
